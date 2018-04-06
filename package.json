@@ -1,0 +1,71 @@
+{
+  "name": "ebyte-modules-setting",
+  "productName": "ebyte-modules-setting",
+  "version": "1.0.0",
+  "description": "My Electron application description",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "tslint --project tsconfig.json --type-check --force"
+  },
+  "keywords": [],
+  "author": "vova",
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {
+        "packageManager": "yarn"
+      },
+      "electronWinstallerConfig": {
+        "name": "ebyte_modules_setting"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "",
+        "name": ""
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "ebytemodulessetting"
+      }
+    }
+  },
+  "dependencies": {
+    "@types/electron-devtools-installer": "^2.0.2",
+    "@types/react": "^16.3.5",
+    "@types/react-dom": "^16.0.4",
+    "electron-compile": "^6.4.2",
+    "electron-devtools-installer": "^2.1.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "material-ui": "^1.0.0-beta.40",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-hot-loader": "^4.0.1",
+    "tslib": "^1.4.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "electron-forge": "^5.1.1",
+    "electron-prebuilt-compile": "1.8.4",
+    "tslint": "^5.1.0",
+    "typescript": "~2.8.1"
+  }
+}
