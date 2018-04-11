@@ -1,21 +1,55 @@
 import * as React from 'react';
+import {Port} from './port';
+import SerialPortClass from './SerialPortClass';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
-import Button from 'material-ui/Button';
 import Icon from 'material-ui/Icon';
-import {InputLabel, MenuItem, FormGroup,  ListItem,  ListItemIcon,  ListItemText} from 'material-ui';
-import Select from 'material-ui/Select';
-import Input from 'material-ui/Input';
-import Divider from 'material-ui/Divider';
+import {MenuItem, ListItem, ListItemIcon, ListItemText} from 'material-ui';
 import List from 'material-ui/List';
 import TextField from 'material-ui/TextField';
+import Snackbar from 'material-ui/Snackbar';
+import Button from 'material-ui/Button';
 
-export class App extends React.Component<{}, {}> {
+interface IAppState {
+    isPortOpened: boolean;
+    snackBarOpen: boolean;
+    snackBarText: string;
+    moduleVersion?: IModuleVersion;
+}
+
+export interface IModuleVersion {
+    name: string;
+    version: string;
+    variant: string;
+}
+
+export class App extends React.Component<{}, IAppState> {
+    state: IAppState = {isPortOpened: false, snackBarOpen: false, snackBarText: ''};
+    port: SerialPortClass;
+
+    constructor(props: any) {
+        super(props);
+
+        this.port = new SerialPortClass();
+        this.port.onConnect = () => this.setState({isPortOpened: true});
+        this.port.onDisconnect = () => this.setState({isPortOpened: false});
+        this.port.onError = (errorMessage: string) => this.showMessageToUser(errorMessage);
+        this.port.onVersion = (moduleVersion: IModuleVersion) => this.setState({moduleVersion});
+    }
+
+    showMessageToUser = (text: string) => {
+        this.setState({snackBarOpen: true, snackBarText: text});
+    }
+
+    handleSnackBarClose = () => {
+        this.setState({snackBarOpen: false});
+    }
+
     handleChange = () => {
+        console.log('handleChange');
     }
 
     render() {
-
         const currencies = [
             {
                 value: 'USD',
@@ -63,65 +97,13 @@ export class App extends React.Component<{}, {}> {
                     </Grid>
                     <Grid item xs={5} sm={5}>
                         <Paper style={{...styles.paper, height: 230}}>
-                            <FormGroup>
-                                <InputLabel htmlFor='age-helper'>Serial port</InputLabel>
-                                <Select
-                                    value={10}
-                                    onChange={this.handleChange}
-                                    input={<Input name='age' id='age-helper'/>}
-                                >
-                                    <MenuItem value=''>
-                                        <em>Select serial port</em>
-                                    </MenuItem>
-                                    <MenuItem value={10}>Ten</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
-                                </Select>
-                            </FormGroup>
-
-                            <Divider style={{margin: '10px 0'}}/>
-
-                            <Grid container spacing={8}>
-                                <Grid item xs={6} sm={6}>
-                                    <Button variant='raised' fullWidth={true} size='small'>
-                                        Update <Icon>autorenew</Icon>
-                                    </Button>
-                                </Grid>
-                                <Grid item xs={6} sm={6}>
-                                    <Button variant='raised' color='primary' fullWidth={true} size='small'>
-                                        Connect <Icon>settings_remote</Icon>
-                                    </Button>
-                                </Grid>
-                            </Grid>
-
-                            <Divider style={{margin: '10px 0'}}/>
-
-                            <Grid container spacing={8}>
-                                <Grid item xs={6} sm={6}>
-                                    <Button variant='raised' fullWidth={true} size='small'>
-                                        Read params
-                                    </Button>
-                                </Grid>
-                                <Grid item xs={6} sm={6}>
-                                    <Button variant='raised' color='primary' fullWidth={true} size='small'>
-                                        Save params
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                            <Divider style={{margin: '10px 0'}}/>
-
-                            <Grid container spacing={8}>
-                                <Grid item xs={6} sm={6}>
-                                    <Button variant='raised' fullWidth={true} size='small'>
-                                        Export params
-                                    </Button>
-                                </Grid>
-                                <Grid item xs={6} sm={6}>
-                                    <Button variant='raised' color='primary' fullWidth={true} size='small'>
-                                        Import params
-                                    </Button>
-                                </Grid>
-                            </Grid>
+                            <Port
+                                isPortOpened={this.state.isPortOpened}
+                                onConnectPortClick={(port) => this.port.connect(port)}
+                                onDisconnectPortClick={this.port.disconnect}
+                                onReadParamsClick={() => this.port.readParams()}
+                                onUpdatePortListClick={SerialPortClass.updatePortList}
+                            />
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={12}>
@@ -247,6 +229,21 @@ export class App extends React.Component<{}, {}> {
                         </Paper>
                     </Grid>
                 </Grid>
+                <Snackbar
+                    autoHideDuration={4000}
+                    anchorOrigin={{vertical: 'top', horizontal: 'right'}}
+                    open={this.state.snackBarOpen}
+                    onClose={this.handleSnackBarClose}
+                    SnackbarContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    action={
+                        <Button color='inherit' size='small' onClick={this.handleSnackBarClose}>
+                            <Icon>clear</Icon>
+                        </Button>
+                    }
+                    message={<span id='message-id'>{this.state.snackBarText}</span>}
+                />
             </div>
         );
     }
