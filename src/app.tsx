@@ -1,14 +1,10 @@
 import * as React from 'react';
-import {Port} from './port';
-import SerialPortClass from './SerialPortClass';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
-import Icon from 'material-ui/Icon';
-import {MenuItem, ListItem, ListItemIcon, ListItemText} from 'material-ui';
-import List from 'material-ui/List';
-import TextField from 'material-ui/TextField';
-import Snackbar from 'material-ui/Snackbar';
-import Button from 'material-ui/Button';
+import {SerialColumn} from './containers/SerialColumn';
+import SerialPortClass from './components/SerialPortClass';
+import EbyteClass, {IModuleVersion} from './components/EbyteClass';
+
+import {MenuItem, Icon, Paper, Grid, TextField, Snackbar, Button} from 'material-ui';
+import {InfoColumn} from './containers/InfoColumn';
 
 interface IAppState {
     isPortOpened: boolean;
@@ -17,15 +13,10 @@ interface IAppState {
     moduleVersion?: IModuleVersion;
 }
 
-export interface IModuleVersion {
-    name: string;
-    version: string;
-    variant: string;
-}
-
 export class App extends React.Component<{}, IAppState> {
     state: IAppState = {isPortOpened: false, snackBarOpen: false, snackBarText: ''};
     port: SerialPortClass;
+    ebyte: EbyteClass;
 
     constructor(props: any) {
         super(props);
@@ -34,7 +25,18 @@ export class App extends React.Component<{}, IAppState> {
         this.port.onConnect = () => this.setState({isPortOpened: true});
         this.port.onDisconnect = () => this.setState({isPortOpened: false});
         this.port.onError = (errorMessage: string) => this.showMessageToUser(errorMessage);
-        this.port.onVersion = (moduleVersion: IModuleVersion) => this.setState({moduleVersion});
+    }
+
+    connect(port: string) {
+        const serial = this.port.connect(port);
+        if (!serial) {
+            return;
+        }
+
+        this.ebyte = new EbyteClass(serial);
+        this.ebyte.onVersion = (moduleVersion: IModuleVersion) => this.setState({moduleVersion});
+        this.ebyte.onError = (errorMessage: string) => this.showMessageToUser(errorMessage);
+
     }
 
     showMessageToUser = (text: string) => {
@@ -73,35 +75,16 @@ export class App extends React.Component<{}, IAppState> {
                 <Grid container spacing={16}>
                     <Grid item xs={7} sm={7}>
                         <Paper style={{...styles.paper, height: 230, overflowX: 'hidden', overflowY: 'scroll'}}>
-                            <List component='nav'>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <Icon>arrow_back</Icon>
-                                    </ListItemIcon>
-                                    <ListItemText primary='Inbox'/>
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <Icon>arrow_back</Icon>
-                                    </ListItemIcon>
-                                    <ListItemText primary='Inbo1111 1 223 23 x'/>
-                                </ListItem>
-                                <ListItem>
-                                    <ListItemIcon>
-                                        <Icon>arrow_forward</Icon>
-                                    </ListItemIcon>
-                                    <ListItemText primary='Drafts'/>
-                                </ListItem>
-                            </List>
+                            <InfoColumn moduleVersion={this.state.moduleVersion}/>
                         </Paper>
                     </Grid>
                     <Grid item xs={5} sm={5}>
                         <Paper style={{...styles.paper, height: 230}}>
-                            <Port
+                            <SerialColumn
                                 isPortOpened={this.state.isPortOpened}
-                                onConnectPortClick={(port) => this.port.connect(port)}
-                                onDisconnectPortClick={this.port.disconnect}
-                                onReadParamsClick={() => this.port.readParams()}
+                                onConnectPortClick={(port) => this.connect(port)}
+                                onDisconnectPortClick={() => this.port.disconnect()}
+                                onReadParamsClick={() => this.ebyte.readParams()}
                                 onUpdatePortListClick={SerialPortClass.updatePortList}
                             />
                         </Paper>

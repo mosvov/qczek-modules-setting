@@ -7,7 +7,7 @@ import {InputLabel, MenuItem, FormGroup} from 'material-ui';
 import Grid from 'material-ui/Grid';
 import Icon from 'material-ui/Icon';
 import Tooltip from 'material-ui/Tooltip';
-import {IPortList} from './SerialPortClass';
+import {IPortList} from '../components/SerialPortClass';
 
 interface IPortProps {
     isPortOpened: boolean;
@@ -22,7 +22,7 @@ interface IPortState {
     portList: IPortList[];
 }
 
-export class Port extends React.Component<IPortProps, IPortState> {
+export class SerialColumn extends React.Component<IPortProps, IPortState> {
     state: IPortState = {portList: [], selectedPort: ''};
 
     async componentDidMount() {
