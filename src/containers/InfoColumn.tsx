@@ -26,6 +26,12 @@ export default class InfoColumn extends React.Component<IInfoProps, {}> {
                                 primary={`Version: ${moduleVersion.version}`}/>
                         </ListItem>
                         }
+                        {moduleParams &&
+                        <ListItem>
+                            <ListItemText
+                                primary={`Channel: ${moduleParams.channel}`}/>
+                        </ListItem>
+                        }
                     </Grid>
                     <Grid item xs={8} sm={8}>
                         {moduleVersion &&
@@ -38,6 +44,12 @@ export default class InfoColumn extends React.Component<IInfoProps, {}> {
                         <ListItem>
                             <ListItemText
                                 primary={`Params: ${moduleParams.bytes}`}/>
+                        </ListItem>
+                        }
+                        {moduleParams && moduleParams.newBytes != moduleParams.bytes &&
+                        <ListItem>
+                            <ListItemText
+                                primary={`New params: ${moduleParams.newBytes}`}/>
                         </ListItem>
                         }
                     </Grid>

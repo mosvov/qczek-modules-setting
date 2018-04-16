@@ -116,19 +116,17 @@ export default class EbyteClass {
         return bytes.replace(/(\S{2})/g, '$1 ').toLocaleUpperCase();
     }
 
-    static generateNewParams(params: IModuleParams){
-        const param0 = 0xc0;
-        //const a = params.address.toString(16);
+    static generateNewParams(params: IModuleParams) {
+        const param0 = 0xC0;
         const param1 = params.address >> 8;
         const param2 = params.address & 0xff;
-        const param3 = (params.airDataRate | params.baudRate << 3 | params.parityBit << 6);
-        const param4 = params.channel & 0x1f;
-        const param5 = params.transmissionPower | params.fecSwitch << 2 | params.wirelessWakeUp << 3 |
-            params.ioMode << 6 | params.txMode << 7;
+        const param3 = params.airDataRate | params.baudRate << 3 | params.parityBit << 6;
+        const param4 = (410 - params.channel) & 0x1f;
+        const param5 = params.transmissionPower | params.fecSwitch << 2 | params.wirelessWakeUp << 3 | params.ioMode << 6 | params.txMode << 7;
 
         const bytes = new Buffer([param0, param1, param2, param3, param4, param5]);
 
-        console.log('bytes', bytes);
+        return EbyteClass.formatString(bytes.toString('hex'));
     }
 
     handleError = (error: Error) => {

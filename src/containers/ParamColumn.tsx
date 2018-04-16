@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Grid, MenuItem, TextField} from 'material-ui';
-import {EbyteClass, IModuleParams} from '../components/EbyteClass';
+import EbyteClass, {IModuleParams} from '../components/EbyteClass';
 
 interface IParamProps {
     moduleParams?: IModuleParams;
@@ -10,9 +10,9 @@ interface IParamProps {
 export class ParamColumn extends React.Component<IParamProps, {}> {
     handleChange = (event: any) => {
         const target = event.target;
-        /*if (!this.props.moduleParams) {
+        if (!this.props.moduleParams) {
             return;
-        }*/
+        }
 
         let newParams: IModuleParams = {
             ...this.props.moduleParams,
@@ -21,7 +21,6 @@ export class ParamColumn extends React.Component<IParamProps, {}> {
 
         newParams.newBytes = EbyteClass.generateNewParams(newParams);
 
-        console.log('handleChange newParams', newParams);
         this.props.onParamsChanged(newParams);
     }
 
@@ -41,12 +40,13 @@ export class ParamColumn extends React.Component<IParamProps, {}> {
                         margin='normal'
                         helperText='Uart BaudRate'
                     >
-                        <MenuItem value='0'>300bps</MenuItem>
-                        <MenuItem value='1'>1200bps</MenuItem>
-                        <MenuItem value='2'>2400bps</MenuItem>
-                        <MenuItem value='3'>4800bps</MenuItem>
-                        <MenuItem value='4'>9600bps</MenuItem>
-                        <MenuItem value='5'>19200bps</MenuItem>
+                        <MenuItem value='0'>1200bps</MenuItem>
+                        <MenuItem value='1'>2400bps</MenuItem>
+                        <MenuItem value='2'>4800bps</MenuItem>
+                        <MenuItem value='3'>9600bps</MenuItem>
+                        <MenuItem value='4'>38400bps</MenuItem>
+                        <MenuItem value='5'>57600bps</MenuItem>
+                        <MenuItem value='6'>115200bps</MenuItem>
                     </TextField>
                 </Grid>
 
@@ -195,7 +195,7 @@ export class ParamColumn extends React.Component<IParamProps, {}> {
                         onChange={this.handleChange}
                         fullWidth={true}
                         margin='normal'
-                        helperText='Carrier frequency Decimal'
+                        helperText='Frequency from 410 to 441'
                     />
                 </Grid>
 
