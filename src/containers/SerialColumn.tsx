@@ -22,7 +22,7 @@ interface IPortState {
     portList: IPortList[];
 }
 
-export class SerialColumn extends React.Component<IPortProps, IPortState> {
+export default class SerialColumn extends React.Component<IPortProps, IPortState> {
     state: IPortState = {portList: [], selectedPort: ''};
 
     async componentDidMount() {

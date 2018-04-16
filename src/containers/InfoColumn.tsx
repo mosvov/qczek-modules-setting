@@ -1,18 +1,19 @@
 import * as React from 'react';
-import {IModuleVersion} from '../components/EbyteClass';
+import {IModuleParams, IModuleVersion} from '../components/EbyteClass';
 import {Grid, List, ListItem, ListItemText} from 'material-ui';
 
 interface IInfoProps {
     moduleVersion?: IModuleVersion;
+    moduleParams?: IModuleParams;
 }
 
-export class InfoColumn extends React.Component<IInfoProps, {}> {
+export default class InfoColumn extends React.Component<IInfoProps, {}> {
     render() {
-        const {moduleVersion} = this.props;
+        const {moduleVersion, moduleParams} = this.props;
         return (
             <List component='nav'>
-                <Grid container spacing={8}>
-                    <Grid item xs={6} sm={6}>
+                <Grid container>
+                    <Grid item xs={4} sm={4}>
                         {moduleVersion &&
                         <ListItem>
                             <ListItemText
@@ -26,11 +27,17 @@ export class InfoColumn extends React.Component<IInfoProps, {}> {
                         </ListItem>
                         }
                     </Grid>
-                    <Grid item xs={6} sm={6}>
+                    <Grid item xs={8} sm={8}>
                         {moduleVersion &&
                         <ListItem>
                             <ListItemText
                                 primary={`Info: ${moduleVersion.bytes}`}/>
+                        </ListItem>
+                        }
+                        {moduleParams &&
+                        <ListItem>
+                            <ListItemText
+                                primary={`Params: ${moduleParams.bytes}`}/>
                         </ListItem>
                         }
                     </Grid>
