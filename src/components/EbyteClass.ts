@@ -45,6 +45,15 @@ export default class EbyteClass {
         this.port.write([0xC1, 0xC1, 0xC1], this.handleError);
     }
 
+    saveParams(params?: string) {
+        if (!params) {
+            return;
+        }
+
+        const bytes = Buffer.from(params.replace(/\s/g, ''), 'hex');
+        this.port.write(bytes, this.handleError);
+    }
+
     onData(data: Buffer) {
         this.buffer = this.buffer ? Buffer.concat([this.buffer, data]) : data;
 
@@ -121,7 +130,7 @@ export default class EbyteClass {
         const param1 = params.address >> 8;
         const param2 = params.address & 0xff;
         const param3 = params.airDataRate | params.baudRate << 3 | params.parityBit << 6;
-        const param4 = (410 - params.channel) & 0x1f;
+        const param4 = (params.channel - 410) & 0x1f;
         const param5 = params.transmissionPower | params.fecSwitch << 2 | params.wirelessWakeUp << 3 | params.ioMode << 6 | params.txMode << 7;
 
         const bytes = new Buffer([param0, param1, param2, param3, param4, param5]);

@@ -13,7 +13,7 @@ export default class InfoColumn extends React.Component<IInfoProps, {}> {
         return (
             <List component='nav'>
                 <Grid container>
-                    <Grid item xs={4} sm={4}>
+                    <Grid item xs={5} sm={5}>
                         {moduleVersion &&
                         <ListItem>
                             <ListItemText
@@ -29,11 +29,11 @@ export default class InfoColumn extends React.Component<IInfoProps, {}> {
                         {moduleParams &&
                         <ListItem>
                             <ListItemText
-                                primary={`Channel: ${moduleParams.channel}`}/>
+                                primary={`Channel: ${moduleParams.channel} Mhz`}/>
                         </ListItem>
                         }
                     </Grid>
-                    <Grid item xs={8} sm={8}>
+                    <Grid item xs={7} sm={7}>
                         {moduleVersion &&
                         <ListItem>
                             <ListItemText
@@ -46,7 +46,7 @@ export default class InfoColumn extends React.Component<IInfoProps, {}> {
                                 primary={`Params: ${moduleParams.bytes}`}/>
                         </ListItem>
                         }
-                        {moduleParams && moduleParams.newBytes != moduleParams.bytes &&
+                        {moduleParams && moduleParams.newBytes &&
                         <ListItem>
                             <ListItemText
                                 primary={`New params: ${moduleParams.newBytes}`}/>

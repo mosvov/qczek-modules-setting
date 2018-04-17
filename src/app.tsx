@@ -6,6 +6,11 @@ import EbyteClass, {IModuleParams, IModuleVersion} from './components/EbyteClass
 import {Icon, Paper, Grid, Snackbar, Button} from 'material-ui';
 import {ParamColumn} from './containers/ParamColumn';
 
+import {remote} from 'electron';
+import * as  fs from 'fs';
+
+const {dialog} = remote;
+
 interface IAppState {
     isPortOpened: boolean;
     snackBarOpen: boolean;
@@ -48,6 +53,67 @@ export class App extends React.Component<{}, IAppState> {
         this.setState({snackBarOpen: false});
     }
 
+    onExportParamsClick = () => {
+        if (!this.state.moduleParams) {
+            return;
+        }
+
+        let options = {
+            title: 'Save params to file:',
+            filters: [{name: 'text', extensions: ['txt']}]
+        };
+
+        dialog.showSaveDialog(options, (fileName: string) => {
+            if (fileName === undefined) {
+                return;
+            }
+
+            fs.writeFile(fileName, this.state.moduleParams && this.state.moduleParams.bytes, (err: Error) => {
+                if (err) {
+                    dialog.showErrorBox('File Save Error', err.message);
+                } else {
+                    dialog.showMessageBox({message: 'The file has been saved!', buttons: ['OK']});
+                }
+
+            });
+        });
+    }
+
+    onImportParamsClick = () => {
+        let options = {
+            title: 'Get params from file:',
+            filters: [{name: 'text', extensions: ['txt']}],
+            properties: ['openFile']
+        };
+
+        dialog.showOpenDialog(options, (filePaths: string) => {
+            if (!filePaths || filePaths.length != 1) {
+                return;
+            }
+
+            fs.readFile(filePaths[0], (err: Error, data: Buffer) => {
+                if (err) {
+                    dialog.showErrorBox('File Read Error', err.message);
+                } else {
+                    const txtContent = data.toString();
+                    if (this.state.moduleParams) {
+                        this.setState({
+                            moduleParams: {
+                                ...this.state.moduleParams,
+                                newBytes: txtContent
+                            }
+                        });
+                    }
+                }
+
+            });
+        });
+    }
+
+    componentWillUnmount() {
+        this.port.disconnect();
+    }
+
     render() {
         return (
             <div style={styles.root}>
@@ -66,6 +132,9 @@ export class App extends React.Component<{}, IAppState> {
                                 onConnectPortClick={(port) => this.connect(port)}
                                 onDisconnectPortClick={() => this.port.disconnect()}
                                 onReadParamsClick={() => this.ebyte.readParams()}
+                                onSaveParamsClick={() => this.ebyte.saveParams(this.state.moduleParams && this.state.moduleParams.newBytes)}
+                                onExportParamsClick={this.onExportParamsClick}
+                                onImportParamsClick={this.onImportParamsClick}
                                 onUpdatePortListClick={SerialPortClass.updatePortList}
                             />
                         </Paper>

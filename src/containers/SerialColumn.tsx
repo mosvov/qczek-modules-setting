@@ -14,6 +14,9 @@ interface IPortProps {
     onConnectPortClick: (port: string) => void;
     onDisconnectPortClick: () => void;
     onReadParamsClick: () => void;
+    onSaveParamsClick: () => void;
+    onExportParamsClick: () => void;
+    onImportParamsClick: () => void;
     onUpdatePortListClick: () => Promise<IPortList[]>;
 }
 
@@ -88,7 +91,7 @@ export default class SerialColumn extends React.Component<IPortProps, IPortState
                         </Button>
                     </Grid>
                     <Grid item xs={6} sm={6}>
-                        <Button variant='raised' color='primary' fullWidth={true} size='small'>
+                        <Button variant='raised' color='primary' fullWidth={true} size='small' onClick={this.props.onSaveParamsClick}>
                             Save params
                         </Button>
                     </Grid>
@@ -97,12 +100,12 @@ export default class SerialColumn extends React.Component<IPortProps, IPortState
 
                 <Grid container spacing={8}>
                     <Grid item xs={6} sm={6}>
-                        <Button variant='raised' fullWidth={true} size='small'>
+                        <Button variant='raised' fullWidth={true} size='small' onClick={this.props.onExportParamsClick}>
                             Export params
                         </Button>
                     </Grid>
                     <Grid item xs={6} sm={6}>
-                        <Button variant='raised' color='primary' fullWidth={true} size='small'>
+                        <Button variant='raised' color='primary' fullWidth={true} size='small' onClick={this.props.onImportParamsClick}>
                             Import params
                         </Button>
                     </Grid>

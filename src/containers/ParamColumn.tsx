@@ -40,13 +40,13 @@ export class ParamColumn extends React.Component<IParamProps, {}> {
                         margin='normal'
                         helperText='Uart BaudRate'
                     >
-                        <MenuItem value='0'>1200bps</MenuItem>
-                        <MenuItem value='1'>2400bps</MenuItem>
-                        <MenuItem value='2'>4800bps</MenuItem>
-                        <MenuItem value='3'>9600bps</MenuItem>
-                        <MenuItem value='4'>38400bps</MenuItem>
-                        <MenuItem value='5'>57600bps</MenuItem>
-                        <MenuItem value='6'>115200bps</MenuItem>
+                        <MenuItem value={0}>1200bps</MenuItem>
+                        <MenuItem value={1}>2400bps</MenuItem>
+                        <MenuItem value={2}>4800bps</MenuItem>
+                        <MenuItem value={3}>9600bps</MenuItem>
+                        <MenuItem value={4}>38400bps</MenuItem>
+                        <MenuItem value={5}>57600bps</MenuItem>
+                        <MenuItem value={6}>115200bps</MenuItem>
                     </TextField>
                 </Grid>
 
@@ -61,9 +61,9 @@ export class ParamColumn extends React.Component<IParamProps, {}> {
                         margin='normal'
                         helperText='Note Parity'
                     >
-                        <MenuItem value='0'>8N1</MenuItem>
-                        <MenuItem value='1'>8O1</MenuItem>
-                        <MenuItem value='2'>8E1</MenuItem>
+                        <MenuItem value={0}>8N1</MenuItem>
+                        <MenuItem value={1}>8O1</MenuItem>
+                        <MenuItem value={2}>8E1</MenuItem>
                     </TextField>
                 </Grid>
 
@@ -78,12 +78,12 @@ export class ParamColumn extends React.Component<IParamProps, {}> {
                         margin='normal'
                         helperText='Data rate in the air'
                     >
-                        <MenuItem value='0'>300Kbps</MenuItem>
-                        <MenuItem value='1'>1200Kbps</MenuItem>
-                        <MenuItem value='2'>2400Kbps</MenuItem>
-                        <MenuItem value='3'>4800Kbps</MenuItem>
-                        <MenuItem value='4'>9600Kbps</MenuItem>
-                        <MenuItem value='5'>19200Kbps</MenuItem>
+                        <MenuItem value={0}>300Kbps</MenuItem>
+                        <MenuItem value={1}>1200Kbps</MenuItem>
+                        <MenuItem value={2}>2400Kbps</MenuItem>
+                        <MenuItem value={3}>4800Kbps</MenuItem>
+                        <MenuItem value={4}>9600Kbps</MenuItem>
+                        <MenuItem value={5}>19200Kbps</MenuItem>
                     </TextField>
                 </Grid>
 
@@ -98,10 +98,10 @@ export class ParamColumn extends React.Component<IParamProps, {}> {
                         margin='normal'
                         helperText='RF output power'
                     >
-                        <MenuItem value='0'>20dBm</MenuItem>
-                        <MenuItem value='1'>17dBm</MenuItem>
-                        <MenuItem value='2'>14dBm</MenuItem>
-                        <MenuItem value='3'>10dBm</MenuItem>
+                        <MenuItem value={0}>20dBm</MenuItem>
+                        <MenuItem value={1}>17dBm</MenuItem>
+                        <MenuItem value={2}>14dBm</MenuItem>
+                        <MenuItem value={3}>10dBm</MenuItem>
                     </TextField>
                 </Grid>
 
@@ -116,8 +116,8 @@ export class ParamColumn extends React.Component<IParamProps, {}> {
                         margin='normal'
                         helperText='Forward error correction'
                     >
-                        <MenuItem value='0'>Disable</MenuItem>
-                        <MenuItem value='1'>Enable</MenuItem>
+                        <MenuItem value={0}>Disable</MenuItem>
+                        <MenuItem value={1}>Enable</MenuItem>
                     </TextField>
                 </Grid>
 
@@ -132,8 +132,8 @@ export class ParamColumn extends React.Component<IParamProps, {}> {
                         margin='normal'
                         helperText='Open fixed mode or not '
                     >
-                        <MenuItem value='0'>Transparent</MenuItem>
-                        <MenuItem value='1'>Fixed</MenuItem>
+                        <MenuItem value={0}>Transparent</MenuItem>
+                        <MenuItem value={1}>Fixed</MenuItem>
                     </TextField>
                 </Grid>
 
@@ -148,14 +148,14 @@ export class ParamColumn extends React.Component<IParamProps, {}> {
                         margin='normal'
                         helperText='Work on radio timing'
                     >
-                        <MenuItem value='0'>250ms</MenuItem>
-                        <MenuItem value='1'>500ms</MenuItem>
-                        <MenuItem value='2'>750ms</MenuItem>
-                        <MenuItem value='3'>1000ms</MenuItem>
-                        <MenuItem value='4'>1250ms</MenuItem>
-                        <MenuItem value='5'>1500ms</MenuItem>
-                        <MenuItem value='6'>1750ms</MenuItem>
-                        <MenuItem value='7'>2000ms</MenuItem>
+                        <MenuItem value={0}>250ms</MenuItem>
+                        <MenuItem value={1}>500ms</MenuItem>
+                        <MenuItem value={2}>750ms</MenuItem>
+                        <MenuItem value={3}>1000ms</MenuItem>
+                        <MenuItem value={4}>1250ms</MenuItem>
+                        <MenuItem value={5}>1500ms</MenuItem>
+                        <MenuItem value={6}>1750ms</MenuItem>
+                        <MenuItem value={7}>2000ms</MenuItem>
                     </TextField>
                 </Grid>
 
@@ -170,8 +170,8 @@ export class ParamColumn extends React.Component<IParamProps, {}> {
                         margin='normal'
                         helperText='PushPull, PullUp'
                     >
-                        <MenuItem value='0'>Open</MenuItem>
-                        <MenuItem value='1'>PushPull</MenuItem>
+                        <MenuItem value={0}>Open</MenuItem>
+                        <MenuItem value={1}>PushPull</MenuItem>
                     </TextField>
                 </Grid>
 
@@ -183,7 +183,7 @@ export class ParamColumn extends React.Component<IParamProps, {}> {
                         onChange={this.handleChange}
                         fullWidth={true}
                         margin='normal'
-                        helperText='Hex Format'
+                        helperText='Number from 1 to 65535'
                     />
                 </Grid>
 
