@@ -7,6 +7,11 @@ matrix:
   - os: linux
     dist: xenial
     sudo: required
+    addons:
+      apt:
+        packages:
+        - fakeroot
+        - rpm
   - os: osx
 sudo: false
 
@@ -19,12 +24,6 @@ notifications:
   email: false
 script:
   - npm run publish
-
-addons:
-  apt:
-    packages:
-    - fakeroot
-    - rpm
 
 deploy:
   provider: releases
