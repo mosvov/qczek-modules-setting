@@ -7,12 +7,24 @@ matrix:
     dist: xenial
     sudo: required
   - os: osx
+sudo: false
+
 cache:
   yarn: true
+   directories:
+     - node_modules
+    - $HOME/.cache/electron
 notifications:
   email: false
 script:
   - npm run publish
+
+addons:
+  apt:
+    packages:
+    - fakeroot
+    - rpm
+
 deploy:
   provider: releases
   skip_cleanup: true
