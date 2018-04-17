@@ -12,7 +12,7 @@ cache:
 notifications:
   email: false
 script:
-  - yarn publish
+  - npm run publish
 deploy:
   provider: releases
   skip_cleanup: true
