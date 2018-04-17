@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - '9'
+
 matrix:
   include:
   - os: linux
@@ -11,8 +12,8 @@ sudo: false
 
 cache:
   yarn: true
-   directories:
-     - node_modules
+  directories:
+    - node_modules
     - $HOME/.cache/electron
 notifications:
   email: false
