@@ -37,8 +37,8 @@
       "electronInstallerDebian": {},
       "electronInstallerRedhat": {},
       "github_repository": {
-        "owner": "",
-        "name": ""
+        "owner": "mosvov",
+        "name": "ebyte-modules-setting"
       },
       "windowsStoreConfig": {
         "packageName": "",

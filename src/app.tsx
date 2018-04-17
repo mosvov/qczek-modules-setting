@@ -117,7 +117,7 @@ export class App extends React.Component<{}, IAppState> {
     render() {
         return (
             <div style={styles.root}>
-                <Grid container spacing={16}>
+                <Grid container spacing={8}>
                     <Grid item xs={7} sm={7}>
                         <Paper style={{...styles.paper, height: 230, overflowX: 'hidden', overflowY: 'scroll'}}>
                             <InfoColumn

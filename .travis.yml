@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - '9'
+matrix:
+  include:
+  - os: linux
+    dist: xenial
+    sudo: required
+  - os: osx
+cache:
+  yarn: true
+notifications:
+  email: false
+script:
+  - yarn publish
+deploy:
+  provider: releases
+  skip_cleanup: true
+  on:
+    tags: true
