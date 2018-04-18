@@ -1,6 +1,6 @@
+import {Grid, List, ListItem, ListItemText} from 'material-ui';
 import * as React from 'react';
 import {IModuleParams, IModuleVersion} from '../components/EbyteClass';
-import {Grid, List, ListItem, ListItemText} from 'material-ui';
 
 interface IInfoProps {
     moduleVersion?: IModuleVersion;

@@ -1,5 +1,5 @@
-import * as React from 'react';
 import {Grid, MenuItem, TextField} from 'material-ui';
+import * as React from 'react';
 import EbyteClass, {IModuleParams} from '../components/EbyteClass';
 
 interface IParamProps {
@@ -14,7 +14,7 @@ export class ParamColumn extends React.Component<IParamProps, {}> {
             return;
         }
 
-        let newParams: IModuleParams = {
+        const newParams: IModuleParams = {
             ...this.props.moduleParams,
             [target.name]: target.value
         };

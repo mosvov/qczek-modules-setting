@@ -1,12 +1,12 @@
-import * as React from 'react';
-import Select from 'material-ui/Select';
-import Input from 'material-ui/Input';
-import Divider from 'material-ui/Divider';
+import {FormGroup, InputLabel, MenuItem} from 'material-ui';
 import Button from 'material-ui/Button';
-import {InputLabel, MenuItem, FormGroup} from 'material-ui';
+import Divider from 'material-ui/Divider';
 import Grid from 'material-ui/Grid';
 import Icon from 'material-ui/Icon';
+import Input from 'material-ui/Input';
+import Select from 'material-ui/Select';
 import Tooltip from 'material-ui/Tooltip';
+import * as React from 'react';
 import {IPortList} from '../components/SerialPortClass';
 
 interface IPortProps {
@@ -45,7 +45,7 @@ export default class SerialColumn extends React.Component<IPortProps, IPortState
                     <Select
                         title='Select serial port'
                         value={this.state.selectedPort}
-                        onChange={event => this.setState({selectedPort: event.target.value})}
+                        onChange={(event) => this.setState({selectedPort: event.target.value})}
                         input={<Input name='serial-port' id='serial-port'/>}
                     >
                         <MenuItem value=''>

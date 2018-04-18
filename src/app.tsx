@@ -1,15 +1,25 @@
-import * as React from 'react';
-import SerialColumn from './containers/SerialColumn';
-import InfoColumn from './containers/InfoColumn';
-import SerialPortClass from './components/SerialPortClass';
-import EbyteClass, {IModuleParams, IModuleVersion} from './components/EbyteClass';
-import {Icon, Paper, Grid, Snackbar, Button} from 'material-ui';
-import {ParamColumn} from './containers/ParamColumn';
-
 import {remote} from 'electron';
 import * as  fs from 'fs';
+import {Button, Grid, Icon, Paper, Snackbar} from 'material-ui';
+import * as React from 'react';
+
+import EbyteClass, {IModuleParams, IModuleVersion} from './components/EbyteClass';
+import SerialPortClass from './components/SerialPortClass';
+import InfoColumn from './containers/InfoColumn';
+import {ParamColumn} from './containers/ParamColumn';
+import SerialColumn from './containers/SerialColumn';
 
 const {dialog} = remote;
+const styles = {
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: '5px 15px',
+        margin: '5px 15px',
+        height: '100%'
+    }
+};
 
 interface IAppState {
     isPortOpened: boolean;
@@ -58,7 +68,7 @@ export class App extends React.Component<{}, IAppState> {
             return;
         }
 
-        let options = {
+        const options = {
             title: 'Save params to file:',
             filters: [{name: 'text', extensions: ['txt']}]
         };
@@ -80,14 +90,14 @@ export class App extends React.Component<{}, IAppState> {
     }
 
     onImportParamsClick = () => {
-        let options = {
+        const options = {
             title: 'Get params from file:',
             filters: [{name: 'text', extensions: ['txt']}],
             properties: ['openFile']
         };
 
         dialog.showOpenDialog(options, (filePaths: string) => {
-            if (!filePaths || filePaths.length != 1) {
+            if (!filePaths || filePaths.length !== 1) {
                 return;
             }
 
@@ -166,14 +176,3 @@ export class App extends React.Component<{}, IAppState> {
         );
     }
 }
-
-const styles = {
-    root: {
-        flexGrow: 1,
-    },
-    paper: {
-        padding: '5px 15px',
-        margin: '5px 15px',
-        height: '100%'
-    }
-};

@@ -86,9 +86,9 @@
   dependencies:
     csstype "^2.0.0"
 
-"@types/react@^16.3.9":
-  version "16.3.9"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.9.tgz#15be16b53c89aac558cf6445774502b2792555ff"
+"@types/react@^16.3.11":
+  version "16.3.11"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.11.tgz#345a17f1c96420f10b9f0dc696c31091ff9d66ea"
   dependencies:
     csstype "^2.2.0"
 
@@ -2139,9 +2139,9 @@ electron-forge-template-vue@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/electron-forge-template-vue/-/electron-forge-template-vue-1.0.3.tgz#58a11ec972a0f0518e1306da7a573fbaf6b4ac50"
 
-electron-forge@^5.1.2:
-  version "5.1.2"
-  resolved "https://registry.yarnpkg.com/electron-forge/-/electron-forge-5.1.2.tgz#1c20bb7bf52a2089b74548dd940cf3d2d6de1bb9"
+electron-forge@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/electron-forge/-/electron-forge-5.2.0.tgz#0a89b9842b93dc74869e1c276dda8cd12a904fcc"
   dependencies:
     "@octokit/rest" "^15.2.6"
     aws-sdk "^2.9.0"
@@ -2157,6 +2157,7 @@ electron-forge@^5.1.2:
     electron-forge-template-vue "^1.0.2"
     electron-packager "^11.0.0"
     electron-rebuild "^1.6.0"
+    exact-version "^1.0.1"
     form-data "^2.1.4"
     fs-extra "^5.0.0"
     glob "^7.1.1"
@@ -2483,6 +2484,10 @@ esutils@^2.0.2:
 events@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
+
+exact-version@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/exact-version/-/exact-version-1.0.2.tgz#2ac417243c00c5e42418e678c598dbd1393d1d89"
 
 execa@^0.4.0:
   version "0.4.0"
@@ -5016,9 +5021,9 @@ rcedit@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/rcedit/-/rcedit-1.0.0.tgz#43309ecbc8814f3582fca6b751748cfad66a16a2"
 
-react-dom@^16.3.1:
-  version "16.3.1"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.1.tgz#6a3c90a4fb62f915bdbcf6204422d93a7d4ca573"
+react-dom@^16.3.2:
+  version "16.3.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.2.tgz#cb90f107e09536d683d84ed5d4888e9640e0e4df"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -5084,9 +5089,9 @@ react-transition-group@^2.2.1:
     prop-types "^15.5.8"
     warning "^3.0.0"
 
-react@^16.3.1:
-  version "16.3.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.3.1.tgz#4a2da433d471251c69b6033ada30e2ed1202cfd8"
+react@^16.3.2:
+  version "16.3.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"

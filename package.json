@@ -9,7 +9,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "tslint --project tsconfig.json --type-check --force"
+    "lint": "tslint --project tsconfig.json --force"
   },
   "keywords": [],
   "author": "vova",
@@ -48,14 +48,14 @@
   },
   "dependencies": {
     "@types/electron-devtools-installer": "^2.0.3",
-    "@types/react": "^16.3.9",
+    "@types/react": "^16.3.11",
     "@types/react-dom": "^16.0.5",
     "electron-devtools-installer": "^2.2.3",
     "electron-compile": "^6.4.2",
     "react-hot-loader": "^4.0.1",
     "material-ui": "^1.0.0-beta.40",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "serialport": "^6.1.1",
     "tslib": "^1.9.0"
   },
@@ -64,7 +64,7 @@
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
-    "electron-forge": "^5.1.2",
+    "electron-forge": "^5.2.0",
     "electron-prebuilt-compile": "1.8.4",
     "tslint": "^5.9.1",
     "typescript": "~2.8.1"

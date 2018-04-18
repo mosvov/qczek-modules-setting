@@ -1,12 +1,24 @@
 {
+  "extends": "tslint:recommended",
   "rules": {
     "curly": true,
     "eofline": false,
-    "align": [true, "parameters"],
+    "align": [
+      true,
+      "parameters"
+    ],
     "class-name": true,
-    "indent": [true, "spaces"],
-    "max-line-length": [true, 150],
-    "no-consecutive-blank-lines": [true],
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "max-line-length": [
+      true,
+      150
+    ],
+    "no-consecutive-blank-lines": [
+      true
+    ],
     "no-trailing-whitespace": true,
     "no-duplicate-variable": true,
     "no-var-keyword": true,
@@ -15,26 +27,49 @@
     "no-use-before-declare": true,
     "no-var-requires": true,
     "no-require-imports": true,
-    "one-line": [true,
+    "one-line": [
+      true,
       "check-else",
       "check-whitespace",
-      "check-open-brace"],
-    "quotemark": [true,
+      "check-open-brace"
+    ],
+    "object-literal-sort-keys": false,
+    "quotemark": [
+      true,
       "single",
-      "avoid-escape"],
-    "semicolon": [true, "always"],
-    "typedef-whitespace": [true, {
-      "call-signature": "nospace",
-      "index-signature": "nospace",
-      "parameter": "nospace",
-      "property-declaration": "nospace",
-      "variable-declaration": "nospace"
-    }],
-    "whitespace": [true,
+      "avoid-escape"
+    ],
+    "semicolon": [
+      true,
+      "always"
+    ],
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      }
+    ],
+    "whitespace": [
+      true,
       "check-branch",
       "check-decl",
       "check-operator",
       "check-separator",
-      "check-type"]
+      "check-type"
+    ],
+    "member-access": false,
+    "trailing-comma": false,
+    "member-ordering": false,
+    "no-bitwise": false,
+    "no-console": false,
+    "radix": false
+  },
+  "linterOptions": {
+    "exclude": ["node_modules", "./out"]
+
   }
 }

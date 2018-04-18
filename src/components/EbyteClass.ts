@@ -60,19 +60,19 @@ export default class EbyteClass {
         console.log('onData', data.toString('hex'));
 
         const firstByte = this.buffer.toString('hex', 0, 1);
-        //The module returns the version information
+        // The module returns the version information
         if (firstByte === 'c3' && this.buffer && this.buffer.length === 4) {
             this.onVersion({
                 id: 'E' + this.buffer.toString('hex', 1, 2),
                 version: parseInt(this.buffer.toString('hex', 2, 3)) / 10,
                 bytes: EbyteClass.formatString(this.buffer.toString('hex'))
             });
-            //read params after receive version
+            // read params after receive version
             this.readParams();
             delete this.buffer;
         }
 
-        //The module returns the saved parameters
+        // The module returns the saved parameters
         if (firstByte === 'c0' && this.buffer && this.buffer.length === 6) {
             const itemSPED = this.buffer.readUInt8(3);
             const itemCHAN = this.buffer.readUInt8(4);
@@ -81,18 +81,18 @@ export default class EbyteClass {
             const address = this.buffer.readUInt8(2) | this.buffer.readUInt8(1) << 8;
 
             let parityBit = itemSPED >> 6;
-            if (parityBit == 3) {
+            if (parityBit === 3) {
                 parityBit = 0;
             }
 
-            let baudRate = (itemSPED >> 3) & 7;
+            const baudRate = (itemSPED >> 3) & 7;
 
             let airDataRate = itemSPED & 7;
             if (airDataRate > 5) {
                 airDataRate = 5;
             }
 
-            const channel = 410 + (itemCHAN & 0x1f); //or 862
+            const channel = 410 + (itemCHAN & 0x1f); // or 862
 
             const transmissionMode = itemOPTION >> 7;
             const txMode = itemOPTION >> 7;
