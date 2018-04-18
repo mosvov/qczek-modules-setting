@@ -1,32 +1,26 @@
 language: node_js
-node_js:
-  - '9'
+node_js: '9'
 
-matrix:
-  include:
-  - os: linux
-    dist: xenial
-    sudo: required
-    addons:
-      apt:
-        packages:
-        - fakeroot
-        - rpm
-  - os: osx
+os:
+- linux
+- osx
+dist: trusty
+osx_image: xcode8.3
 sudo: false
 
 cache:
   yarn: true
   directories:
-    - node_modules
-    - $HOME/.cache/electron
-notifications:
-  email: false
-script:
-  - npm run publish
+  - node_modules
+  - $HOME/.cache/electron
 
-deploy:
-  provider: releases
-  skip_cleanup: true
-  on:
-    tags: true
+addons:
+  apt:
+    packages:
+    - fakeroot
+    - rpm
+
+script:
+- npm run lint
+- if test -z "$TRAVIS_TAG"; then npm run make; fi
+after_success: if test -n "$TRAVIS_TAG"; then npm run publish; fi
