@@ -21,7 +21,10 @@ module.exports = {
     "electronInstallerRedhat": {},
     "github_repository": {
         "owner": "mosvov",
-        "name": "ebyte-modules-setting"
+        "name": "ebyte-modules-setting",
+        "options": {
+            "host": 'api.github.com',
+        }
     },
     "windowsStoreConfig": {
         "packageName": "",
