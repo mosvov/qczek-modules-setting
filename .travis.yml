@@ -22,5 +22,4 @@ addons:
 
 script:
 - npm run lint
-
-after_success: npm run publish
+- electron-forge publish --target github
