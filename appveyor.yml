@@ -11,7 +11,7 @@ cache:
 
 branches:
   only:
-- master
+    - master
 
 install:
 - ps: Install-Product node $env:nodejs_version $env:platform
