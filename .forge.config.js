@@ -4,7 +4,7 @@ module.exports = {
             "squirrel"
         ],
         "darwin": [
-            "zip"
+            "dmg"
         ],
         "linux": [
             "deb",
@@ -12,10 +12,15 @@ module.exports = {
         ]
     },
     "electronPackagerConfig": {
-        "packageManager": "yarn"
+        "packageManager": "yarn",
+        "icon": "./src/icons/serial_config",
+        "dir": "./src"
     },
     "electronWinstallerConfig": {
         "name": "ebyte_modules_setting"
+    },
+    "electronInstallerDMG": {
+        "icon": "./src/icons/serial_config.icns"
     },
     "electronInstallerDebian": {},
     "electronInstallerRedhat": {},

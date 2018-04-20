@@ -1,6 +1,7 @@
 import { app, BrowserWindow } from 'electron';
 import { enableLiveReload } from 'electron-compile';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
+import * as path from 'path';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -17,13 +18,14 @@ const createWindow = async () => {
   mainWindow = new BrowserWindow({
     width: 990,
     height: 655,
+    icon: path.join(__dirname, 'icons/serial_config.png'),
   });
 
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/index.html`);
 
   // Open the DevTools.
-  if (true) {
+  if (isDevMode) {
     await installExtension(REACT_DEVELOPER_TOOLS);
     mainWindow.webContents.openDevTools();
   }
