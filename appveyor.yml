@@ -1,0 +1,28 @@
+platform:
+- x64
+
+environment:
+  nodejs_version: "9"
+
+cache:
+- '%APPDATA%\npm-cache'
+- '%USERPROFILE%\.electron'
+- node_modules
+
+branches:
+  only:
+- master
+
+install:
+- ps: Install-Product node $env:nodejs_version $env:platform
+- set PATH=%APPDATA%\npm;%PATH%
+- choco install yarn --ignore-dependencies
+- yarn
+
+test_script:
+- node --version
+- npm --version
+- npm run lint
+
+build_script:
+- npm run publish
