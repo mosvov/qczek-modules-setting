@@ -17,7 +17,7 @@ module.exports = {
         "dir": "./src"
     },
     "electronWinstallerConfig": {
-        "name": "ebyte_modules_setting"
+        "name": "qczek_modules_setting"
     },
     "electronInstallerDMG": {
         "icon": "./src/icons/serial_config.icns"
@@ -26,13 +26,13 @@ module.exports = {
     "electronInstallerRedhat": {},
     "github_repository": {
         "owner": "mosvov",
-        "name": "ebyte-modules-setting",
+        "name": "qczek-modules-setting",
         "options": {
             "host": 'api.github.com',
         }
     },
     "windowsStoreConfig": {
         "packageName": "",
-        "name": "ebytemodulessetting"
+        "name": "qczekmodulessetting"
     }
 }

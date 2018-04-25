@@ -17,7 +17,7 @@ const createWindow = async () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 990,
-    height: 655,
+    height: 635,
     icon: path.join(__dirname, 'icons/serial_config.png'),
   });
 

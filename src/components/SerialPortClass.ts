@@ -6,7 +6,7 @@ export default class SerialPortClass {
     onDisconnect: () => void;
     onError: (errorMessage: string) => void;
 
-    connect(portName: string, baudRate: number = 9600) {
+    connect(portName: string, baudRate: number = 57600) {
         if (!portName) {
             return this.onError('No port selected');
         }

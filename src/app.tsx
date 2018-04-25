@@ -3,7 +3,7 @@ import * as  fs from 'fs';
 import {Button, Grid, Icon, Paper, Snackbar} from 'material-ui';
 import * as React from 'react';
 
-import EbyteClass, {IModuleParams, IModuleVersion} from './components/EbyteClass';
+import QczekClass, {DEFAULT_MODULE_PARAMS, IModuleParams} from './components/QczekClass';
 import SerialPortClass from './components/SerialPortClass';
 import InfoColumn from './containers/InfoColumn';
 import {ParamColumn} from './containers/ParamColumn';
@@ -25,14 +25,13 @@ interface IAppState {
     isPortOpened: boolean;
     snackBarOpen: boolean;
     snackBarText: string;
-    moduleVersion?: IModuleVersion;
-    moduleParams?: IModuleParams;
+    moduleParams: IModuleParams;
 }
 
 export class App extends React.Component<{}, IAppState> {
-    state: IAppState = {isPortOpened: false, snackBarOpen: false, snackBarText: ''};
+    state: IAppState = {isPortOpened: false, snackBarOpen: false, snackBarText: '', moduleParams: DEFAULT_MODULE_PARAMS};
     port: SerialPortClass;
-    ebyte: EbyteClass;
+    qczek: QczekClass;
 
     constructor(props: any) {
         super(props);
@@ -49,10 +48,14 @@ export class App extends React.Component<{}, IAppState> {
             return;
         }
 
-        this.ebyte = new EbyteClass(serial);
-        this.ebyte.onVersion = (moduleVersion: IModuleVersion) => this.setState({moduleVersion});
-        this.ebyte.onParams = (moduleParams: IModuleParams) => this.setState({moduleParams});
-        this.ebyte.onError = (errorMessage: string) => this.showMessageToUser(errorMessage);
+        this.qczek = new QczekClass(serial);
+        this.qczek.onParams = (moduleParams: Partial<IModuleParams>) => this.setState({
+            moduleParams: {
+                ...this.state.moduleParams,
+                ...moduleParams
+            }
+        });
+        this.qczek.onError = (errorMessage: string) => this.showMessageToUser(errorMessage);
     }
 
     showMessageToUser = (text: string) => {
@@ -78,7 +81,9 @@ export class App extends React.Component<{}, IAppState> {
                 return;
             }
 
-            fs.writeFile(fileName, this.state.moduleParams && this.state.moduleParams.bytes, (err: Error) => {
+            const text = Object.keys(this.state.moduleParams).map((key) => QczekClass.generateParamLine(key, this.state.moduleParams[key]));
+
+            fs.writeFile(fileName, text.filter(String).join('\n'), (err: Error) => {
                 if (err) {
                     dialog.showErrorBox('File Save Error', err.message);
                 } else {
@@ -105,15 +110,14 @@ export class App extends React.Component<{}, IAppState> {
                 if (err) {
                     dialog.showErrorBox('File Read Error', err.message);
                 } else {
-                    const txtContent = data.toString();
-                    if (this.state.moduleParams) {
-                        this.setState({
-                            moduleParams: {
-                                ...this.state.moduleParams,
-                                newBytes: txtContent
-                            }
-                        });
-                    }
+                    const newParams = QczekClass.parseParamsFromFile(data.toString());
+                    this.setState({
+                        moduleParams: {
+                            ...this.state.moduleParams,
+                            ...newParams,
+                            isMaster: newParams.version.startsWith('QczekLRS_M')
+                        }
+                    });
                 }
 
             });
@@ -129,9 +133,8 @@ export class App extends React.Component<{}, IAppState> {
             <div style={styles.root}>
                 <Grid container spacing={8}>
                     <Grid item xs={7} sm={7}>
-                        <Paper style={{...styles.paper, height: 230, overflowX: 'hidden', overflowY: 'scroll'}}>
+                        <Paper style={{...styles.paper, height: 230, overflowX: 'hidden', overflowY: 'auto'}}>
                             <InfoColumn
-                                moduleVersion={this.state.moduleVersion}
                                 moduleParams={this.state.moduleParams}/>
                         </Paper>
                     </Grid>
@@ -141,8 +144,8 @@ export class App extends React.Component<{}, IAppState> {
                                 isPortOpened={this.state.isPortOpened}
                                 onConnectPortClick={(port) => this.connect(port)}
                                 onDisconnectPortClick={() => this.port.disconnect()}
-                                onReadParamsClick={() => this.ebyte.readParams()}
-                                onSaveParamsClick={() => this.ebyte.saveParams(this.state.moduleParams && this.state.moduleParams.newBytes)}
+                                onReadParamsClick={() => this.qczek.readParams()}
+                                onSaveParamsClick={() => this.qczek.saveParams(this.state.moduleParams)}
                                 onExportParamsClick={this.onExportParamsClick}
                                 onImportParamsClick={this.onImportParamsClick}
                                 onUpdatePortListClick={SerialPortClass.updatePortList}
@@ -150,7 +153,7 @@ export class App extends React.Component<{}, IAppState> {
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={12}>
-                        <Paper style={styles.paper}>
+                        <Paper style={{...styles.paper, height: 330, overflowX: 'hidden', overflowY: 'auto'}}>
                             <ParamColumn
                                 moduleParams={this.state.moduleParams}
                                 onParamsChanged={(moduleParams) => this.setState({moduleParams})}/>
