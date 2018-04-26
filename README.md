@@ -1,7 +1,8 @@
 # QCZEK modules setting
-Cross platform application to edit settings of QCZEK RF modules
+Cross platform application to edit settings of QCZEK LRS modules
 
-![Screen shot](https://i.imgur.com/Jphsrus.png)
+![QCZEK LRS master module config](https://i.imgur.com/5Mo9XNR.png)
+![QCZEK LRS slave module config](https://i.imgur.com/cgHFNAl.png)
 
 ## Installation
 
@@ -12,7 +13,7 @@ Download the latest version of configurator from the [GitHub releases page.](htt
 |Platform|Build status|
 |---|---|
 |Windows|[![Build status](https://ci.appveyor.com/api/projects/status/m3f2kakkywww12cq?svg=true)](https://ci.appveyor.com/project/mosvov/qczek-modules-setting)||
-|macOS/Linux|![Build status](https://api.travis-ci.org/mosvov/qczek-modules-setting.svg?branch=master)|
+|macOS/Linux|[![Build status](https://ci.appveyor.com/api/projects/status/wtbsij0n6ases42w?svg=true)](https://ci.appveyor.com/project/mosvov/qczek-modules-setting)
 
 ## Development
 

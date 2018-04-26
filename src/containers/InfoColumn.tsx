@@ -64,7 +64,7 @@ export default class InfoColumn extends React.Component<IInfoProps, {}> {
                             <ListItemIcon>
                                 <Icon>link</Icon>
                             </ListItemIcon>
-                            Configurator github page
+                            Github page
                         </ListItem>
                     </Grid>
                 </Grid>
