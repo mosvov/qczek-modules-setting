@@ -2,7 +2,6 @@
 Cross platform application to edit settings of QCZEK LRS modules
 
 ![QCZEK LRS master module config](https://i.imgur.com/5Mo9XNR.png)
-![QCZEK LRS slave module config](https://i.imgur.com/cgHFNAl.png)
 
 ## Installation
 
