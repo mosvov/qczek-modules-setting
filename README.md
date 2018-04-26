@@ -12,8 +12,8 @@ Download the latest version of configurator from the [GitHub releases page.](htt
 
 |Platform|Build status|
 |---|---|
-|Windows|[![Build status](https://ci.appveyor.com/api/projects/status/m3f2kakkywww12cq?svg=true)](https://ci.appveyor.com/project/mosvov/qczek-modules-setting)||
-|macOS/Linux|[![Build status](https://ci.appveyor.com/api/projects/status/wtbsij0n6ases42w?svg=true)](https://ci.appveyor.com/project/mosvov/qczek-modules-setting)
+|Windows|[![Build status](https://ci.appveyor.com/api/projects/status/wtbsij0n6ases42w/branch/master?svg=true)](https://ci.appveyor.com/project/mosvov/qczek-modules-setting/branch/master)||
+|macOS/Linux|![Build status](https://api.travis-ci.org/mosvov/qczek-modules-setting.svg?branch=master)|
 
 ## Development
 
