@@ -18,8 +18,7 @@ module.exports = {
         "dir": "./src"
     },
     "electronWinstallerConfig": {
-        "name": `qczek_modules_setting_${arch}`,
-        "exe": `qczek_modules_setting_${arch}_<%= version %>`
+        "name": `qczek_modules_setting_${arch}`
     },
     "electronInstallerDMG": {
         "icon": "./src/icons/serial_config.icns"
