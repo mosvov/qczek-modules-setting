@@ -1,3 +1,4 @@
+const arch = require('os').arch();
 module.exports = {
     "make_targets": {
         "win32": [
@@ -17,7 +18,7 @@ module.exports = {
         "dir": "./src"
     },
     "electronWinstallerConfig": {
-        "name": "qczek_modules_setting"
+        "name": `qczek_modules_setting_${arch}`
     },
     "electronInstallerDMG": {
         "icon": "./src/icons/serial_config.icns"
