@@ -105,18 +105,20 @@ export default class QczekClass {
                 return;
             }
 
-            console.log('port write', line);
+            console.log('Write to port', line, line.length);
 
-            this.port.write(line, this.handleError);
+            this.port.write(QczekClass.alignCommand(line), this.handleError);
         });
     }
 
     /**
      * Command that we send to serial should have minimum 10 char
      * Is because DMA buffer is processed every 10 chars
+     *
+     * If we have 22 char in command, we should send minimum 30
      */
     static alignCommand(command: string): string {
-        return command.padEnd(10);
+        return command.padEnd(30);
     }
 
     onData(data: string) {
