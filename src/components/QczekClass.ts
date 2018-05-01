@@ -109,6 +109,8 @@ export default class QczekClass {
 
             this.port.write(QczekClass.alignCommand(line), this.handleError);
         });
+
+        this.port.write(QczekClass.alignCommand('{ParSave}'), this.handleError);
     }
 
     /**
@@ -129,7 +131,7 @@ export default class QczekClass {
 
         console.log('data', data);
 
-        if (data === '{Msg S Param set}') {
+        if (data.includes('{Msg S Param set}')) {
             console.log('Param saved');
             return;
         }
