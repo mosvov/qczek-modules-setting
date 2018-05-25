@@ -192,7 +192,7 @@ export default class QczekClass {
         }
         // It’s set in tenths of second - show to user in seconds
         if (paramNameShort === 'timeToFS') {
-            paramValue = +paramValue * 10;
+            paramValue = +paramValue / 10;
         }
 
         return {[paramName]: paramValue};
@@ -218,7 +218,7 @@ export default class QczekClass {
         }
 
         if (paramName === 'timeToFS') {
-            paramValue = +paramValue / 10;
+            paramValue = +paramValue * 10;
         }
 
         if (paramName === 'isMaster') {

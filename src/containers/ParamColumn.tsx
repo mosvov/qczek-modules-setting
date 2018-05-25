@@ -1,10 +1,10 @@
-import {Grid, InputLabel, ListItemText, MenuItem, Tab, TextField} from 'material-ui';
-import AppBar from 'material-ui/AppBar';
-import Checkbox from 'material-ui/Checkbox';
-import Input from 'material-ui/Input';
-import Select from 'material-ui/Select';
-import Tabs from 'material-ui/Tabs';
-import Tooltip from 'material-ui/Tooltip';
+import {Grid, InputLabel, ListItemText, MenuItem, Tab, TextField} from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Checkbox from '@material-ui/core/Checkbox';
+import Input from '@material-ui/core/Input';
+import Select from '@material-ui/core/Select';
+import Tabs from '@material-ui/core/Tabs';
+import Tooltip from '@material-ui/core/Tooltip';
 import {Handle, Range} from 'rc-slider';
 import * as React from 'react';
 import {IModuleParams} from '../components/QczekClass';
@@ -106,6 +106,7 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
                         >
                             {moduleParams.isMaster && <MenuItem value={0}>CPPM</MenuItem>}
                             {moduleParams.isMaster && <MenuItem value={1}>FrSky PXX XJT D8/D16</MenuItem>}
+                            {moduleParams.isMaster && <MenuItem value={1}>SBUS (from v1.71)</MenuItem>}
                             {!moduleParams.isMaster && <MenuItem value={0}>CPPM</MenuItem>}
                             {!moduleParams.isMaster && <MenuItem value={1}>SBUS</MenuItem>}
                         </TextField>
@@ -178,6 +179,23 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
                             <MenuItem value={0}>RF Signal strength</MenuItem>
                             <MenuItem value={1}>SNR level</MenuItem>
                             <MenuItem value={2}>Packet loss</MenuItem>
+                        </TextField>
+                    </Grid>
+                    }
+                    {moduleParams && !moduleParams.isMaster &&
+                    <Grid item xs={3} sm={3}>
+                        <TextField
+                            name='lbeep'
+                            select
+                            label='LBeep'
+                            value={moduleParams ? moduleParams.lbeep : ''}
+                            onChange={this.handleChange}
+                            fullWidth={true}
+                            margin='normal'
+                            helperText='lbeep signal on rssi pin'
+                        >
+                            <MenuItem value={0}>RSSI PWM</MenuItem>
+                            <MenuItem value={1}>LBeep</MenuItem>
                         </TextField>
                     </Grid>
                     }
@@ -328,7 +346,7 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
                             onChange={this.handleChange}
                             fullWidth={true}
                             margin='normal'
-                            helperText='Value in seconds'
+                            helperText='Value in tenths of second'
                         />
                     </Grid>
 
@@ -341,7 +359,7 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
                             onChange={this.handleChange}
                             fullWidth={true}
                             margin='normal'
-                            helperText='Value in seconds'
+                            helperText='Value in tenths of second'
                         />
                     </Grid>
 

@@ -1,6 +1,6 @@
+import {Grid, List, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
+import Icon from '@material-ui/core/Icon';
 import {shell} from 'electron';
-import {Grid, List, ListItem, ListItemIcon, ListItemText} from 'material-ui';
-import Icon from 'material-ui/Icon';
 import * as React from 'react';
 import {IModuleParams} from '../components/QczekClass';
 
