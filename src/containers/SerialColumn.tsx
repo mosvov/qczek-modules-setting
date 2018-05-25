@@ -1,11 +1,11 @@
-import {FormGroup, InputLabel, MenuItem} from 'material-ui';
-import Button from 'material-ui/Button';
-import Divider from 'material-ui/Divider';
-import Grid from 'material-ui/Grid';
-import Icon from 'material-ui/Icon';
-import Input from 'material-ui/Input';
-import Select from 'material-ui/Select';
-import Tooltip from 'material-ui/Tooltip';
+import {FormGroup, InputLabel, MenuItem} from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
+import Grid from '@material-ui/core/Grid';
+import Icon from '@material-ui/core/Icon';
+import Input from '@material-ui/core/Input';
+import Select from '@material-ui/core/Select';
+import Tooltip from '@material-ui/core/Tooltip';
 import * as React from 'react';
 import {IPortList} from '../components/SerialPortClass';
 

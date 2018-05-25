@@ -1,8 +1,8 @@
 {
   "name": "qczek-modules-setting",
   "productName": "qczek-modules-setting",
-  "version": "1.0.2",
-  "description": "My Electron application description",
+  "version": "1.0.3",
+  "description": "Cross platform application to edit settings of QCZEK LRS modules",
   "main": "src/index.ts",
   "scripts": {
     "start": "electron-forge start",
@@ -18,28 +18,28 @@
     "forge": ".forge.config.js"
   },
   "dependencies": {
+    "@material-ui/core": "^1.0.0",
     "electron-compile": "^6.4.2",
-    "electron-devtools-installer": "^2.2.3",
-    "material-ui": "^1.0.0-beta.41",
+    "electron-devtools-installer": "^2.2.4",
     "rc-slider": "^8.6.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-hot-loader": "^4.1.2",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-hot-loader": "^4.2.0",
     "serialport": "^6.2.0",
-    "tslib": "^1.9.0"
+    "tslib": "^1.9.1"
   },
   "devDependencies": {
     "@types/electron-devtools-installer": "^2.0.3",
     "@types/rc-slider": "^8.2.3",
-    "@types/react": "^16.3.13",
+    "@types/react": "^16.3.14",
     "@types/react-dom": "^16.0.5",
     "@types/serialport": "^6.0.1",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "electron-forge": "^5.2.0",
-    "electron-prebuilt-compile": "1.8.4",
-    "tslint": "^5.9.1",
+    "electron-forge": "^5.2.2",
+    "electron-prebuilt-compile": "2.0.2",
+    "tslint": "^5.10.0",
     "typescript": "~2.8.3"
   }
 }

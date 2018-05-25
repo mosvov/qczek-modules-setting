@@ -1,6 +1,6 @@
+import {Button, Grid, Icon, Paper, Snackbar} from '@material-ui/core';
 import {remote} from 'electron';
 import * as  fs from 'fs';
-import {Button, Grid, Icon, Paper, Snackbar} from 'material-ui';
 import * as React from 'react';
 
 import QczekClass, {DEFAULT_MODULE_PARAMS, IModuleParams} from './components/QczekClass';
