@@ -1,7 +1,7 @@
 {
   "name": "qczek-modules-setting",
   "productName": "qczek-modules-setting",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Cross platform application to edit settings of QCZEK LRS modules",
   "main": "src/index.ts",
   "scripts": {
