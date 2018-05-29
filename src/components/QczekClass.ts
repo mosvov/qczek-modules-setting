@@ -31,6 +31,9 @@ export interface IModuleParams {
     wdTime?: number;
     fsDontT?: number;
     lbeep?: number;
+    m0PWMChn?: number;
+    m1PWMChn?: number;
+    silent?: number;
     fs00?: number;
     fs01?: number;
     fs02?: number;

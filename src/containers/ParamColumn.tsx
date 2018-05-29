@@ -199,6 +199,60 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
                         </TextField>
                     </Grid>
                     }
+                    {moduleParams && !moduleParams.isMaster &&
+                    <Grid item xs={3} sm={3}>
+                        <TextField
+                            name='m0PWMChn'
+                            select
+                            label='M0 PWM Channel'
+                            value={moduleParams ? moduleParams.m0PWMChn : ''}
+                            onChange={this.handleChange}
+                            fullWidth={true}
+                            margin='normal'
+                            helperText='Output pwm to control servo'
+                        >
+                            {[...Array(17).keys()].map((i) => {
+                                return <MenuItem key={i} value={i}>{i}</MenuItem>;
+                            })}
+                        </TextField>
+                    </Grid>
+                    }
+                    {moduleParams && !moduleParams.isMaster &&
+                    <Grid item xs={3} sm={3}>
+                        <TextField
+                            name='m1PWMChn'
+                            select
+                            label='M1 PWM Channel'
+                            value={moduleParams ? moduleParams.m1PWMChn : ''}
+                            onChange={this.handleChange}
+                            fullWidth={true}
+                            margin='normal'
+                            helperText='Output pwm to control servo'
+                        >
+                            {[...Array(17).keys()].map((i) => {
+                                return <MenuItem key={i} value={i}>{i}</MenuItem>;
+                            })}
+                        </TextField>
+                    </Grid>
+                    }
+                    {moduleParams && !moduleParams.isMaster &&
+                    <Grid item xs={3} sm={3}>
+                        <TextField
+                            name='silent'
+                            select
+                            label='Silent mode'
+                            value={moduleParams ? moduleParams.silent : ''}
+                            onChange={this.handleChange}
+                            fullWidth={true}
+                            margin='normal'
+                            helperText='Disable sending any RF signal'
+                        >
+                            <MenuItem value={0}>Off</MenuItem>
+                            <MenuItem value={1}>On</MenuItem>
+                        </TextField>
+                    </Grid>
+                    }
+
                     <Grid item xs={3} sm={3}>
                         <TextField
                             name='racem'
