@@ -106,7 +106,7 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
                         >
                             {moduleParams.isMaster && <MenuItem value={0}>CPPM</MenuItem>}
                             {moduleParams.isMaster && <MenuItem value={1}>FrSky PXX XJT D8/D16</MenuItem>}
-                            {moduleParams.isMaster && <MenuItem value={1}>SBUS (from v1.71)</MenuItem>}
+                            {moduleParams.isMaster && <MenuItem value={2}>SBUS</MenuItem>}
                             {!moduleParams.isMaster && <MenuItem value={0}>CPPM</MenuItem>}
                             {!moduleParams.isMaster && <MenuItem value={1}>SBUS</MenuItem>}
                         </TextField>
@@ -400,7 +400,7 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
                             onChange={this.handleChange}
                             fullWidth={true}
                             margin='normal'
-                            helperText='Value in tenths of second'
+                            helperText='Value in seconds'
                         />
                     </Grid>
 
@@ -413,7 +413,7 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
                             onChange={this.handleChange}
                             fullWidth={true}
                             margin='normal'
-                            helperText='Value in tenths of second'
+                            helperText='Value in seconds'
                         />
                     </Grid>
 

@@ -26,7 +26,10 @@ interface IPortState {
 }
 
 export default class SerialColumn extends React.Component<IPortProps, IPortState> {
-    state: IPortState = {portList: [], selectedPort: ''};
+    state: IPortState = {
+        portList: [],
+        selectedPort: (localStorage.getItem('selectedPort')) as string
+    };
 
     async componentDidMount() {
         await this.updatePortList();
@@ -45,7 +48,10 @@ export default class SerialColumn extends React.Component<IPortProps, IPortState
                     <Select
                         title='Select serial port'
                         value={this.state.selectedPort}
-                        onChange={(event) => this.setState({selectedPort: event.target.value})}
+                        onChange={(event) => {
+                            this.setState({selectedPort: event.target.value});
+                            localStorage.setItem('selectedPort', event.target.value);
+                        }}
                         input={<Input name='serial-port' id='serial-port'/>}
                     >
                         <MenuItem value=''>
