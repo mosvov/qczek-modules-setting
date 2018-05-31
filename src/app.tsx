@@ -1,5 +1,5 @@
 import {Button, Grid, Icon, Paper, Snackbar} from '@material-ui/core';
-import {remote} from 'electron';
+import {OpenDialogOptions, remote, SaveDialogOptions} from 'electron';
 import * as  fs from 'fs';
 import * as React from 'react';
 
@@ -73,13 +73,16 @@ export class App extends React.Component<{}, IAppState> {
 
         const options = {
             title: 'Save params to file:',
-            filters: [{name: 'text', extensions: ['txt']}]
-        };
+            filters: [{name: 'text', extensions: ['txt']}],
+            defaultPath: localStorage.getItem('fileNamePath')
+        } as SaveDialogOptions;
 
         dialog.showSaveDialog(options, (fileName: string) => {
             if (fileName === undefined) {
                 return;
             }
+
+            localStorage.setItem('fileNamePath', fileName);
 
             const text = Object.keys(this.state.moduleParams).map((key) => QczekClass.generateParamLine(key, this.state.moduleParams[key]));
 
@@ -98,13 +101,16 @@ export class App extends React.Component<{}, IAppState> {
         const options = {
             title: 'Get params from file:',
             filters: [{name: 'text', extensions: ['txt']}],
-            properties: ['openFile']
-        };
+            properties: ['openFile'],
+            defaultPath: localStorage.getItem('fileNamePath')
+        } as OpenDialogOptions;
 
-        dialog.showOpenDialog(options, (filePaths: string) => {
+        dialog.showOpenDialog(options, (filePaths: string[]) => {
             if (!filePaths || filePaths.length !== 1) {
                 return;
             }
+
+            localStorage.setItem('fileNamePath', filePaths[0]);
 
             fs.readFile(filePaths[0], (err: Error, data: Buffer) => {
                 if (err) {
@@ -115,7 +121,7 @@ export class App extends React.Component<{}, IAppState> {
                         moduleParams: {
                             ...this.state.moduleParams,
                             ...newParams,
-                            isMaster: newParams.version.startsWith('QczekLRS_M')
+                            isMaster: newParams && newParams.version ?  newParams.version.startsWith('QczekLRS_M') : false
                         }
                     });
                 }
@@ -165,7 +171,7 @@ export class App extends React.Component<{}, IAppState> {
                     anchorOrigin={{vertical: 'top', horizontal: 'right'}}
                     open={this.state.snackBarOpen}
                     onClose={this.handleSnackBarClose}
-                    SnackbarContentProps={{
+                    ContentProps={{
                         'aria-describedby': 'message-id',
                     }}
                     action={
