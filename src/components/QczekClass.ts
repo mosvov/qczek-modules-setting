@@ -20,6 +20,7 @@ export interface IModuleParams {
     fr5: number;
     fr6: number;
     fr7: number;
+    beaFreq: number;
     proto: number;
     devThrs: number;
     sTelFrmR: number;
@@ -190,7 +191,7 @@ export default class QczekClass {
             paramName = 'features';
         }
         // show frequency to user divided by 1000000
-        if (paramNameShort.startsWith('fr')) {
+        if (paramNameShort.startsWith('fr') || paramName === 'beaFreq') {
             paramValue = +paramValue / 1000000;
         }
         // It’s set in tenths of second - show to user in seconds
@@ -216,7 +217,7 @@ export default class QczekClass {
             paramName = `f.`;
         }
 
-        if (paramName.startsWith('fr')) {
+        if (paramName.startsWith('fr') || paramName === 'beaFreq') {
             paramValue = +paramValue * 1000000;
         }
 

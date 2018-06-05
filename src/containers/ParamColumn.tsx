@@ -174,7 +174,7 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
                             onChange={this.handleChange}
                             fullWidth={true}
                             margin='normal'
-                            helperText='Open fixed mode or not '
+                            helperText=''
                         >
                             <MenuItem value={0}>RF Signal strength</MenuItem>
                             <MenuItem value={1}>SNR level</MenuItem>
@@ -301,6 +301,20 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
                             />
                         </Grid>;
                     })}
+                    {moduleParams && !moduleParams.isMaster &&
+                    <Grid item xs={3} sm={3}>
+                        <TextField
+                            type='number'
+                            name={`beaFreq`}
+                            label={`Beacon Frequency`}
+                            value={moduleParams.beaFreq}
+                            onChange={this.handleChange}
+                            fullWidth={true}
+                            margin='normal'
+                            helperText=''
+                        />
+                    </Grid>
+                    }
 
                 </Grid>
                 }
