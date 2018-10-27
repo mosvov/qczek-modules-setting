@@ -69,7 +69,7 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
         return (
             <div style={{position: 'relative', paddingTop: 40}}>
                 <AppBar position='absolute' style={{top: '-5px', left: '-15px', width: 'calc(100% + 30px)'}}>
-                    <Tabs value={this.state.activeTab} onChange={(event, value) => this.setState({activeTab: value})}>
+                    <Tabs value={this.state.activeTab} onChange={({}, value) => this.setState({activeTab: value})}>
                         <Tab label='Main settings'/>
                         <Tab label='RF frequencies'/>
                         <Tab label='Telemetry'/>
