@@ -18,12 +18,12 @@
     "forge": ".forge.config.js"
   },
   "dependencies": {
-    "@material-ui/core": "^3.1.2",
+    "@material-ui/core": "^3.3.1",
     "electron-compile": "^6.4.3",
     "electron-devtools-installer": "^2.2.4",
     "rc-slider": "^8.6.3",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
     "react-hot-loader": "^4.3.11",
     "serialport": "^7.0.2",
     "tslib": "^1.9.3"
@@ -31,15 +31,15 @@
   "devDependencies": {
     "@types/electron-devtools-installer": "^2.2.0",
     "@types/rc-slider": "^8.6.0",
-    "@types/react": "^16.4.15",
-    "@types/react-dom": "^16.0.8",
+    "@types/react": "^16.4.18",
+    "@types/react-dom": "^16.0.9",
     "@types/serialport": "^6.0.4",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "electron-forge": "^5.2.2",
-    "electron-prebuilt-compile": "2.0.2",
+    "electron-prebuilt-compile": "3.0.6",
     "tslint": "^5.11.0",
-    "typescript": "~3.1.1"
+    "typescript": "~3.1.3"
   }
 }

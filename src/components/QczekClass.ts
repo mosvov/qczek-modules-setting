@@ -70,6 +70,7 @@ export const DEFAULT_MODULE_PARAMS: IModuleParams = {
     sTelFrmR: 1,
     lTelFrmR: 6,
     racem: 0,
+    beaFreq: 0,
     fr0: 0,
     fr1: 0,
     fr2: 0,
@@ -124,6 +125,7 @@ export default class QczekClass {
      * If we have 22 char in command, we should send minimum 30
      */
     static alignCommand(command: string): string {
+        // @ts-ignore
         return command.padEnd(30);
     }
 
