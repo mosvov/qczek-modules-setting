@@ -355,6 +355,7 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
                             <MenuItem value={0}>Transparency mode</MenuItem>
                             <MenuItem value={1}>Mavlink telemetry encapsulation</MenuItem>
                             <MenuItem value={2}>uBlox GPS telemetry</MenuItem>
+                            <MenuItem value={3}>Mavlink enc. + SPORT</MenuItem>
                         </TextField>
                     </Grid>
                     <Grid item xs={6} sm={6}/>
