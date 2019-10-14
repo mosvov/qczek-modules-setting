@@ -137,15 +137,15 @@ export class App extends React.Component<{}, IAppState> {
     render() {
         return (
             <div style={styles.root}>
-                <Grid container spacing={8}>
+                <Grid container spacing={2}>
                     <Grid item xs={7} sm={7}>
-                        <Paper style={{...styles.paper, height: 230, overflowX: 'hidden', overflowY: 'auto'}}>
+                        <Paper style={{...styles.paper, height: 230, overflowX: 'hidden', overflowY: 'auto'}} elevation={2}>
                             <InfoColumn
                                 moduleParams={this.state.moduleParams}/>
                         </Paper>
                     </Grid>
                     <Grid item xs={5} sm={5}>
-                        <Paper style={{...styles.paper, height: 230}}>
+                        <Paper style={{...styles.paper, height: 230}} elevation={2}>
                             <SerialColumn
                                 isPortOpened={this.state.isPortOpened}
                                 onConnectPortClick={(port) => this.connect(port)}
@@ -159,7 +159,7 @@ export class App extends React.Component<{}, IAppState> {
                         </Paper>
                     </Grid>
                     <Grid item xs={12} sm={12}>
-                        <Paper style={{...styles.paper, height: 330, overflowX: 'hidden', overflowY: 'auto'}}>
+                        <Paper style={{...styles.paper, height: 330, overflowX: 'hidden', overflowY: 'auto'}} elevation={2}>
                             <ParamColumn
                                 moduleParams={this.state.moduleParams}
                                 onParamsChanged={(moduleParams) => this.setState({moduleParams})}/>

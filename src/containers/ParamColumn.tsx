@@ -78,8 +78,7 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
                 </AppBar>
 
                 {this.state.activeTab === 0 &&
-                <Grid container spacing={24}>
-
+                <Grid container spacing={2}>
                     <Grid item xs={3} sm={3}>
                         <TextField
                             type='number'
@@ -286,7 +285,7 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
                 }
 
                 {this.state.activeTab === 1 &&
-                <Grid container spacing={24}>
+                <Grid container spacing={2}>
 
                     {[...Array(8).keys()].map((i) => {
                         return <Grid item key={i} xs={3} sm={3}>
@@ -320,7 +319,7 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
                 }
 
                 {this.state.activeTab === 2 &&
-                <Grid container spacing={24}>
+                <Grid container spacing={2}>
                     <Grid item xs={3} sm={3}>
                         <TextField
                             name='serPortSpd'
@@ -404,7 +403,7 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
                 </Grid>
                 }
                 {this.state.activeTab === 3 &&
-                <Grid container spacing={24}>
+                <Grid container spacing={2}>
 
                     <Grid item xs={3} sm={3}>
                         <TextField

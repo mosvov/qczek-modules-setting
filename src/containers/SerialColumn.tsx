@@ -48,7 +48,7 @@ export default class SerialColumn extends React.Component<IPortProps, IPortState
                     <Select
                         title='Select serial port'
                         value={this.state.selectedPort}
-                        onChange={(event) => {
+                        onChange={(event: React.ChangeEvent<{ name?: string; value: string }>) => {
                             this.setState({selectedPort: event.target.value});
                             localStorage.setItem('selectedPort', event.target.value);
                         }}
@@ -65,22 +65,22 @@ export default class SerialColumn extends React.Component<IPortProps, IPortState
 
                 <Divider style={{margin: '10px 0'}}/>
 
-                <Grid container spacing={8}>
+                <Grid container spacing={2}>
                     <Grid item xs={6} sm={6}>
                         <Tooltip title='Update serial port list'>
-                            <Button variant='raised' fullWidth={true} size='small' title='' onClick={this.updatePortList}>
+                            <Button variant='contained' fullWidth={true} size='small' title='' onClick={this.updatePortList}>
                                 Update <Icon>autorenew</Icon>
                             </Button>
                         </Tooltip>
                     </Grid>
                     <Grid item xs={6} sm={6}>
                         {this.props.isPortOpened ?
-                            <Button variant='raised' color='secondary' fullWidth={true} size='small'
+                            <Button variant='contained' color='secondary' fullWidth={true} size='small'
                                     onClick={this.props.onDisconnectPortClick}>
                                 Disconnect <Icon>phonelink_erase</Icon>
                             </Button>
                             :
-                            <Button variant='raised' color='primary' fullWidth={true} size='small'
+                            <Button variant='contained' color='primary' fullWidth={true} size='small'
                                     onClick={() => this.props.onConnectPortClick(this.state.selectedPort)}>
                                 Connect <Icon>phonelink_ring</Icon>
                             </Button>
@@ -90,28 +90,28 @@ export default class SerialColumn extends React.Component<IPortProps, IPortState
 
                 <Divider style={{margin: '10px 0'}}/>
 
-                <Grid container spacing={8}>
+                <Grid container spacing={2}>
                     <Grid item xs={6} sm={6}>
-                        <Button variant='raised' fullWidth={true} size='small' onClick={this.props.onReadParamsClick}>
+                        <Button variant='contained' fullWidth={true} size='small' onClick={this.props.onReadParamsClick}>
                             Read params
                         </Button>
                     </Grid>
                     <Grid item xs={6} sm={6}>
-                        <Button variant='raised' color='primary' fullWidth={true} size='small' onClick={this.props.onSaveParamsClick}>
+                        <Button variant='contained' color='primary' fullWidth={true} size='small' onClick={this.props.onSaveParamsClick}>
                             Save params
                         </Button>
                     </Grid>
                 </Grid>
                 <Divider style={{margin: '10px 0'}}/>
 
-                <Grid container spacing={8}>
+                <Grid container spacing={2}>
                     <Grid item xs={6} sm={6}>
-                        <Button variant='raised' fullWidth={true} size='small' onClick={this.props.onExportParamsClick}>
+                        <Button variant='contained' fullWidth={true} size='small' onClick={this.props.onExportParamsClick}>
                             Export params
                         </Button>
                     </Grid>
                     <Grid item xs={6} sm={6}>
-                        <Button variant='raised' color='primary' fullWidth={true} size='small' onClick={this.props.onImportParamsClick}>
+                        <Button variant='contained' color='primary' fullWidth={true} size='small' onClick={this.props.onImportParamsClick}>
                             Import params
                         </Button>
                     </Grid>
