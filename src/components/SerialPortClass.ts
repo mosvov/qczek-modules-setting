@@ -44,12 +44,4 @@ export default class SerialPortClass {
     }
 }
 
-export interface IPortList {
-    comName: string;
-    manufacturer: string;
-    serialNumber: string;
-    pnpId: string;
-    locationId: string;
-    productId: string;
-    vendorId: string;
-}
+export type IPortList = SerialPort.PortInfo;
