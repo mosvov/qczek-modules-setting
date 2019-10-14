@@ -2,7 +2,7 @@ platform:
 - x86
 
 environment:
-  nodejs_version: "9"
+  nodejs_version: "10"
 
 cache:
 - '%APPDATA%\npm-cache'
