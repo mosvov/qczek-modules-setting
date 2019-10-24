@@ -2,13 +2,13 @@ import { Grid, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/c
 import Icon from '@material-ui/core/Icon';
 import { shell } from 'electron';
 import * as React from 'react';
-import { IModuleParams } from '../components/QczekClass';
+import { tModuleParams } from '../components/QczekClass';
 
-interface IInfoProps {
-  moduleParams?: IModuleParams;
+interface tInfoProps {
+  moduleParams?: tModuleParams;
 }
 
-export default class InfoColumn extends React.Component<IInfoProps, {}> {
+export default class InfoColumn extends React.Component<tInfoProps> {
   render() {
     const { moduleParams } = this.props;
     return (

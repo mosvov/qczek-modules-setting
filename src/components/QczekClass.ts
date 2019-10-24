@@ -1,6 +1,6 @@
 import * as SerialPort from 'serialport';
 
-export interface IModuleParams {
+export interface tModuleParams {
   version?: string;
   features?: string;
   isMaster: boolean;
@@ -53,7 +53,7 @@ export interface IModuleParams {
   fs015?: number;
 }
 
-export const DEFAULT_MODULE_PARAMS: IModuleParams = {
+export const DEFAULT_MODULE_PARAMS: tModuleParams = {
   isMaster: true,
   pCode: 0,
   noOfCPPMChnls: 16,
@@ -84,7 +84,7 @@ export const DEFAULT_MODULE_PARAMS: IModuleParams = {
 export default class QczekClass {
   port: SerialPort;
   onError: (errorMessage: string) => void;
-  onParams: (params: Partial<IModuleParams>) => void;
+  onParams: (params: Partial<tModuleParams>) => void;
 
   constructor(port: SerialPort) {
     this.port = port;
@@ -95,13 +95,13 @@ export default class QczekClass {
     parser.on('data', (data: string) => this.onData(data));
   }
 
-  readParams() {
-    this.port.write(QczekClass.alignCommand('{ParGetAll}'), this.handleError);
+  readParams(): boolean {
+    return this.port.write(QczekClass.alignCommand('{ParGetAll}'), this.handleError);
   }
 
-  saveParams(params: IModuleParams) {
+  saveParams(params: tModuleParams): boolean {
     if (!params) {
-      return;
+      return false;
     }
 
     Object.keys(params).forEach(key => {
@@ -115,7 +115,7 @@ export default class QczekClass {
       this.port.write(QczekClass.alignCommand(line), this.handleError);
     });
 
-    this.port.write(QczekClass.alignCommand('{ParSave}'), this.handleError);
+    return this.port.write(QczekClass.alignCommand('{ParSave}'), this.handleError);
   }
 
   /**
@@ -125,11 +125,10 @@ export default class QczekClass {
    * If we have 22 char in command, we should send minimum 30
    */
   static alignCommand(command: string): string {
-    // @ts-ignore
     return command.padEnd(30);
   }
 
-  onData(data: string) {
+  onData(data: string): void {
     if (!data) {
       console.error('No data in response');
       return;
@@ -150,16 +149,16 @@ export default class QczekClass {
     return this.onParams(parsedLine);
   }
 
-  handleError = (error: Error) => {
+  handleError = (error: Error): void => {
     if (error) {
       this.onError(error.message);
       console.error(error);
     }
   };
 
-  static parseParamsFromFile(fileContent: string): IModuleParams {
+  static parseParamsFromFile(fileContent: string): tModuleParams {
     const lines = fileContent.split('\n');
-    let params: IModuleParams = DEFAULT_MODULE_PARAMS;
+    let params: tModuleParams = DEFAULT_MODULE_PARAMS;
 
     lines.forEach(line => {
       params = {
@@ -171,7 +170,7 @@ export default class QczekClass {
     return params;
   }
 
-  static parseParamLine(line: string): Partial<IModuleParams> {
+  static parseParamLine(line: string): Partial<tModuleParams> {
     if (!line) {
       return {};
     }
