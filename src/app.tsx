@@ -3,7 +3,7 @@ import { OpenDialogOptions, remote, SaveDialogOptions } from 'electron';
 import * as fs from 'fs';
 import * as React from 'react';
 
-import QczekClass, { DEFAULT_MODULE_PARAMS, IModuleParams } from './components/QczekClass';
+import QczekClass, { DEFAULT_MODULE_PARAMS, tModuleParams } from './components/QczekClass';
 import SerialPortClass from './components/SerialPortClass';
 import InfoColumn from './containers/InfoColumn';
 import { ParamColumn } from './containers/ParamColumn';
@@ -21,15 +21,15 @@ const styles = {
   },
 };
 
-interface IAppState {
+interface tAppState {
   isPortOpened: boolean;
   snackBarOpen: boolean;
   snackBarText: string;
-  moduleParams: IModuleParams;
+  moduleParams: tModuleParams;
 }
 
-export class App extends React.Component<{}, IAppState> {
-  state: IAppState = {
+export class App extends React.Component<null, tAppState> {
+  state: tAppState = {
     isPortOpened: false,
     snackBarOpen: false,
     snackBarText: '',
@@ -38,7 +38,7 @@ export class App extends React.Component<{}, IAppState> {
   port: SerialPortClass;
   qczek: QczekClass;
 
-  constructor(props: any) {
+  constructor(props: null) {
     super(props);
 
     this.port = new SerialPortClass();
@@ -54,7 +54,7 @@ export class App extends React.Component<{}, IAppState> {
     }
 
     this.qczek = new QczekClass(serial);
-    this.qczek.onParams = (moduleParams: Partial<IModuleParams>) =>
+    this.qczek.onParams = (moduleParams: Partial<tModuleParams>) =>
       this.setState({
         moduleParams: {
           ...this.state.moduleParams,

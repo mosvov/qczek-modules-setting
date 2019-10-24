@@ -6,24 +6,25 @@ import Select from '@material-ui/core/Select';
 import Tabs from '@material-ui/core/Tabs';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Handle, Range } from 'rc-slider';
+import { ChangeEvent } from 'react';
 import * as React from 'react';
-import { IModuleParams } from '../components/QczekClass';
+import { tModuleParams } from '../components/QczekClass';
 
-interface IParamProps {
-  moduleParams: IModuleParams;
-  onParamsChanged: (moduleParams: IModuleParams) => void;
+interface tParamProps {
+  moduleParams: tModuleParams;
+  onParamsChanged: (moduleParams: tModuleParams) => void;
 }
 
-interface IParamState {
+interface tParamState {
   activeTab: number;
 }
 
-export class ParamColumn extends React.Component<IParamProps, IParamState> {
-  state: IParamState = {
+export class ParamColumn extends React.Component<tParamProps, tParamState> {
+  state: tParamState = {
     activeTab: 0,
   };
 
-  handleChange = (event: any) => {
+  handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     // range change
     if (Array.isArray(event) && event.length === 3) {
       return this.props.onParamsChanged({
@@ -39,7 +40,7 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
       return;
     }
 
-    const newParams: IModuleParams = {
+    const newParams: tModuleParams = {
       ...this.props.moduleParams,
       [target.name]: target.value,
     };
@@ -47,8 +48,10 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
     this.props.onParamsChanged(newParams);
   };
 
-  handleRange = (props: any) => {
-    const { value, index, dragging, ...restProps } = props;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
+  handleRange = props => {
+    const { value, index, ...restProps } = props;
 
     const realValue = Math.round(value / (100 / 15));
 
@@ -70,7 +73,7 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
         >
           <Tabs
             value={this.state.activeTab}
-            onChange={({}, value) => this.setState({ activeTab: value })}
+            onChange={(_, value) => this.setState({ activeTab: value })}
           >
             <Tab label="Main settings" />
             <Tab label="RF frequencies" />
@@ -311,6 +314,8 @@ export class ParamColumn extends React.Component<IParamProps, IParamState> {
                     { backgroundColor: '#f50057' },
                   ]}
                   handle={this.handleRange}
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+                  // @ts-ignore
                   onChange={this.handleChange}
                 />
               </Grid>

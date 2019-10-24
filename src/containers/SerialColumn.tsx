@@ -9,7 +9,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import * as React from 'react';
 import { IPortList } from '../components/SerialPortClass';
 
-interface IPortProps {
+interface tPortProps {
   isPortOpened: boolean;
   onConnectPortClick: (port: string) => void;
   onDisconnectPortClick: () => void;
@@ -20,13 +20,13 @@ interface IPortProps {
   onUpdatePortListClick: () => Promise<IPortList[]>;
 }
 
-interface IPortState {
+interface tPortState {
   selectedPort: string;
   portList: IPortList[];
 }
 
-export default class SerialColumn extends React.Component<IPortProps, IPortState> {
-  state: IPortState = {
+export default class SerialColumn extends React.Component<tPortProps, tPortState> {
+  state: tPortState = {
     portList: [],
     selectedPort: localStorage.getItem('selectedPort') as string,
   };

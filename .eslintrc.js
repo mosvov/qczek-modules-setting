@@ -33,4 +33,23 @@ module.exports = {
     },
     sourceType: 'module',
   },
+  rules: {
+    '@typescript-eslint/class-name-casing': [OFF], //because interface name starts from tType
+  },
+  overrides: [
+    {
+      // enable check for explicit return type specifically for all .ts files
+      files: ['*.ts'],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': ['error'],
+      },
+    },
+    {
+      // disable check for explicit return type
+      files: ['*.tsx'],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': [OFF],
+      },
+    },
+  ],
 };

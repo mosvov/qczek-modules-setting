@@ -6,7 +6,7 @@ export default class SerialPortClass {
   onDisconnect: () => void;
   onError: (errorMessage: string) => void;
 
-  connect(portName: string, baudRate = 57600) {
+  connect(portName: string, baudRate = 57600): SerialPort | void {
     if (!portName) {
       return this.onError('No port selected');
     }
@@ -28,15 +28,15 @@ export default class SerialPortClass {
     return this.port;
   }
 
-  disconnect() {
+  disconnect(): void {
     this.port.close(this.handleError);
   }
 
-  static async updatePortList() {
+  static async updatePortList(): Promise<SerialPort.PortInfo[]> {
     return await SerialPort.list();
   }
 
-  handleError = (error: Error) => {
+  handleError = (error: Error): void => {
     if (error) {
       this.onError(error.message);
       console.error(error);
