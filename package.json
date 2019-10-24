@@ -9,7 +9,9 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish --target github",
-    "lint": "tslint --project tsconfig.json --force"
+    "eslint": "eslint --fix \"src/**/*.{ts,tsx}\"",
+    "lint": "yarn run prettier && yarn run eslint && tsc --noEmit",
+    "prettier": "prettier --write --loglevel error \"src/**/*.{js,ts,tsx}\""
   },
   "keywords": [],
   "author": "mosvov",
@@ -34,12 +36,18 @@
     "@types/react": "^16.9.5",
     "@types/react-dom": "^16.9.1",
     "@types/serialport": "^7.0.4",
+    "@typescript-eslint/eslint-plugin": "^2.5.0",
+    "@typescript-eslint/parser": "^2.5.0",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "electron-forge": "^5.2.4",
     "electron-prebuilt-compile": "4.0.0",
-    "tslint": "^5.20.0",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "prettier": "^1.18.2",
     "typescript": "~3.6.4"
   }
 }
