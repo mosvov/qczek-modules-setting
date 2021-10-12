@@ -59,8 +59,8 @@ export default class SerialColumn extends React.Component<tPortProps, tPortState
             </MenuItem>
             {this.state.portList.map((port, i) => {
               return (
-                <MenuItem key={i} value={port.comName}>
-                  {port.comName}
+                <MenuItem key={i} value={port.locationId}>
+                  {port.locationId}
                 </MenuItem>
               );
             })}

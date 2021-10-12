@@ -1,4 +1,4 @@
-import * as SerialPort from 'serialport';
+import SerialPort from 'serialport';
 
 export default class SerialPortClass {
   port: SerialPort;

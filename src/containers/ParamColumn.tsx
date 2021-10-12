@@ -48,9 +48,8 @@ export class ParamColumn extends React.Component<tParamProps, tParamState> {
     this.props.onParamsChanged(newParams);
   };
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
   // @ts-ignore
-  handleRange = props => {
+  handleRange = (props) => {
     const { value, index, ...restProps } = props;
 
     const realValue = Math.round(value / (100 / 15));
@@ -127,7 +126,7 @@ export class ParamColumn extends React.Component<tParamProps, tParamState> {
                 margin="normal"
                 helperText="Range from 8 to 16"
               >
-                {[...Array(9).keys()].map(i => {
+                {[...Array(9).keys()].map((i) => {
                   return (
                     <MenuItem key={i} value={i + 8}>
                       {i + 8}
@@ -148,7 +147,7 @@ export class ParamColumn extends React.Component<tParamProps, tParamState> {
                   margin="normal"
                   helperText="Range from 0 to 16"
                 >
-                  {[...Array(17).keys()].map(i => {
+                  {[...Array(17).keys()].map((i) => {
                     return (
                       <MenuItem key={i} value={i}>
                         {i}
@@ -170,7 +169,7 @@ export class ParamColumn extends React.Component<tParamProps, tParamState> {
                   margin="normal"
                   helperText="Range from 0 to 16"
                 >
-                  {[...Array(17).keys()].map(i => {
+                  {[...Array(17).keys()].map((i) => {
                     return (
                       <MenuItem key={i} value={i}>
                         {i}
@@ -227,7 +226,7 @@ export class ParamColumn extends React.Component<tParamProps, tParamState> {
                   margin="normal"
                   helperText="Output pwm to control servo"
                 >
-                  {[...Array(17).keys()].map(i => {
+                  {[...Array(17).keys()].map((i) => {
                     return (
                       <MenuItem key={i} value={i}>
                         {i}
@@ -249,7 +248,7 @@ export class ParamColumn extends React.Component<tParamProps, tParamState> {
                   margin="normal"
                   helperText="Output pwm to control servo"
                 >
-                  {[...Array(17).keys()].map(i => {
+                  {[...Array(17).keys()].map((i) => {
                     return (
                       <MenuItem key={i} value={i}>
                         {i}
@@ -314,7 +313,6 @@ export class ParamColumn extends React.Component<tParamProps, tParamState> {
                     { backgroundColor: '#f50057' },
                   ]}
                   handle={this.handleRange}
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
                   // @ts-ignore
                   onChange={this.handleChange}
                 />
@@ -325,13 +323,14 @@ export class ParamColumn extends React.Component<tParamProps, tParamState> {
 
         {this.state.activeTab === 1 && (
           <Grid container spacing={2}>
-            {[...Array(8).keys()].map(i => {
+            {[...Array(8).keys()].map((i) => {
               return (
                 <Grid item key={i} xs={3} sm={3}>
                   <TextField
                     type="number"
                     name={`fr${i}`}
                     label={`Frequency ${i + 1}`}
+                    // @ts-ignore
                     value={moduleParams[`fr${i}`]}
                     onChange={this.handleChange}
                     fullWidth={true}
@@ -479,7 +478,7 @@ export class ParamColumn extends React.Component<tParamProps, tParamState> {
                   input={<Input id="select-multiple-checkbox" />}
                   renderValue={(selected: string[]) => selected && selected.join(', ')}
                 >
-                  {[...Array(17).keys()].map(i => {
+                  {[...Array(17).keys()].map((i) => {
                     return (
                       <MenuItem key={i} value={i}>
                         <Checkbox checked={false} />
@@ -495,7 +494,7 @@ export class ParamColumn extends React.Component<tParamProps, tParamState> {
 
             <Grid item xs={6} sm={6} />
 
-            {[...Array(16).keys()].map(i => {
+            {[...Array(16).keys()].map((i) => {
               const paramName = i < 10 ? `fs0${i}` : `fs${i}`;
 
               return (
@@ -504,6 +503,7 @@ export class ParamColumn extends React.Component<tParamProps, tParamState> {
                     type="number"
                     name={paramName}
                     label={`Channel ${i + 1}`}
+                    // @ts-ignore
                     value={moduleParams[paramName] ? moduleParams[paramName] : 0}
                     onChange={this.handleChange}
                     fullWidth={true}

@@ -1,15 +1,14 @@
 import { Button, Grid, Icon, Paper, Snackbar } from '@material-ui/core';
-import { OpenDialogOptions, remote, SaveDialogOptions } from 'electron';
+import { OpenDialogOptions, SaveDialogOptions } from 'electron';
 import * as fs from 'fs';
 import * as React from 'react';
-
+import { dialog, BrowserWindow } from '@electron/remote';
 import QczekClass, { DEFAULT_MODULE_PARAMS, tModuleParams } from './components/QczekClass';
 import SerialPortClass from './components/SerialPortClass';
 import InfoColumn from './containers/InfoColumn';
 import { ParamColumn } from './containers/ParamColumn';
 import SerialColumn from './containers/SerialColumn';
 
-const { dialog } = remote;
 const styles = {
   root: {
     flexGrow: 1,
@@ -28,7 +27,7 @@ interface tAppState {
   moduleParams: tModuleParams;
 }
 
-export class App extends React.Component<null, tAppState> {
+export default class App extends React.Component<unknown, tAppState> {
   state: tAppState = {
     isPortOpened: false,
     snackBarOpen: false,
@@ -83,18 +82,19 @@ export class App extends React.Component<null, tAppState> {
       defaultPath: localStorage.getItem('fileNamePath'),
     } as SaveDialogOptions;
 
-    dialog.showSaveDialog(options, (fileName: string) => {
-      if (fileName === undefined) {
+    dialog.showSaveDialog(BrowserWindow.getFocusedWindow(), options).then(({ filePath }) => {
+      if (filePath === undefined) {
         return;
       }
 
-      localStorage.setItem('fileNamePath', fileName);
+      localStorage.setItem('fileNamePath', filePath);
 
-      const text = Object.keys(this.state.moduleParams).map(key =>
+      const text = Object.keys(this.state.moduleParams).map((key) =>
+        // @ts-ignore
         QczekClass.generateParamLine(key, this.state.moduleParams[key]),
       );
 
-      fs.writeFile(fileName, text.filter(String).join('\n'), (err: Error) => {
+      fs.writeFile(filePath, text.filter(String).join('\n'), (err: Error) => {
         if (err) {
           dialog.showErrorBox('File Save Error', err.message);
         } else {
@@ -112,7 +112,7 @@ export class App extends React.Component<null, tAppState> {
       defaultPath: localStorage.getItem('fileNamePath'),
     } as OpenDialogOptions;
 
-    dialog.showOpenDialog(options, (filePaths: string[]) => {
+    dialog.showOpenDialog(BrowserWindow.getFocusedWindow(), options).then(({ filePaths }) => {
       if (!filePaths || filePaths.length !== 1) {
         return;
       }
@@ -157,7 +157,7 @@ export class App extends React.Component<null, tAppState> {
             <Paper style={{ ...styles.paper, height: 230 }} elevation={2}>
               <SerialColumn
                 isPortOpened={this.state.isPortOpened}
-                onConnectPortClick={port => this.connect(port)}
+                onConnectPortClick={(port) => this.connect(port)}
                 onDisconnectPortClick={() => this.port.disconnect()}
                 onReadParamsClick={() => this.qczek.readParams()}
                 onSaveParamsClick={() => this.qczek.saveParams(this.state.moduleParams)}
@@ -174,7 +174,7 @@ export class App extends React.Component<null, tAppState> {
             >
               <ParamColumn
                 moduleParams={this.state.moduleParams}
-                onParamsChanged={moduleParams => this.setState({ moduleParams })}
+                onParamsChanged={(moduleParams) => this.setState({ moduleParams })}
               />
             </Paper>
           </Grid>
