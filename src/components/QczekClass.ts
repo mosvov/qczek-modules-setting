@@ -1,4 +1,4 @@
-import * as SerialPort from 'serialport';
+import SerialPort from 'serialport';
 
 export interface tModuleParams {
   version?: string;
@@ -104,7 +104,8 @@ export default class QczekClass {
       return false;
     }
 
-    Object.keys(params).forEach(key => {
+    Object.keys(params).forEach((key) => {
+      // @ts-ignore
       const line = QczekClass.generateParamLine(key, params[key]);
       if (!line || key === 'version' || key === 'features' || key === 'isMaster') {
         return;
@@ -160,7 +161,7 @@ export default class QczekClass {
     const lines = fileContent.split('\n');
     let params: tModuleParams = DEFAULT_MODULE_PARAMS;
 
-    lines.forEach(line => {
+    lines.forEach((line) => {
       params = {
         ...params,
         ...QczekClass.parseParamLine(line),
