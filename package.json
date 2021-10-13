@@ -1,14 +1,14 @@
 {
   "name": "qczek-modules-setting",
   "productName": "qczek-modules-setting",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Cross platform application to edit settings of QCZEK LRS modules",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish --target github",
+    "publish": "electron-forge publish",
     "eslint": "eslint --fix \"src/**/*.{ts,tsx}\"",
     "lint": "yarn run prettier && yarn run eslint && tsc --noEmit",
     "prettier": "prettier --write --loglevel error \"src/**/*.{js,ts,tsx}\""
